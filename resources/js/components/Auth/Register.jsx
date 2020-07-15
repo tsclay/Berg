@@ -1,28 +1,23 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
-import ReactDOM from 'react-dom'
 
 const Register = (props) => {
-  const {selectForm, makeNewUser, token} = props
+  const {selectForm,token} = props
 
   const handleForm = () => {
     selectForm()
   }
-
-  const handleNewUser = (e) => {
-    makeNewUser(e)
-  }
-  
 
   return (
     <div className="min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-center">Signup</div>
         <form className="mx-auto" method="POST" action="/user/create">
+          <input type="hidden" name="_token" value={token} />
           <fieldset className="mb-3">
-            <legend className="ml-3">About You</legend>
-            <div className="ml-3">
-              <input type="hidden" name="_token" value={token} />
+            <legend className="ml-3 mb-3">About You</legend>
+            <div className="ml-3 mb-3">
+          
               <label className="block" htmlFor="first-name">First Name</label>
               <input  
                 type="text"
@@ -40,8 +35,17 @@ const Register = (props) => {
             </div>
           </fieldset>
           <fieldset className="mb-3">
-            <legend className="ml-3">Account</legend>
-            <div className="ml-3">
+            <legend className="ml-3 mb-3">Account</legend>
+            <div className="ml-3 mb-3">
+              <label className="block" htmlFor="username">Username</label>
+              <input
+                type="username"
+                id="username"
+                name="username"
+                placeholder="AwesomeDude01"
+              />
+            </div>
+            <div className="ml-3 mb-3">
               <label className="block" htmlFor="email">Email</label>
               <input
                 type="email"
@@ -50,7 +54,7 @@ const Register = (props) => {
                 placeholder="someone@example.com"
               />
             </div>
-            <div className="ml-3">
+            <div className="ml-3 mb-3">
               <label className="block" htmlFor="password">Password</label>
               <input
                 type="password"

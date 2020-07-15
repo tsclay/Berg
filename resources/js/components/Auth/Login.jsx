@@ -2,7 +2,7 @@
 import React from 'react'
 
 const Login = (props) => {
-  const {selectForm} = props
+  const {selectForm, token} = props
 
   const handleForm = () => {
     selectForm()
@@ -13,7 +13,7 @@ const Login = (props) => {
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-center">Login</div>
         <form className="mx-auto" method="POST" action="/user/find">
-          @csrf
+          <input type="hidden" name="_token" value={token} />
           <fieldset className="mb-3">
             <legend className="ml-3">Account</legend>
             <div className="ml-3">

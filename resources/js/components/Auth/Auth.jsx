@@ -29,7 +29,7 @@ const Auth = () => {
   return form === 0 ? (
     <Register selectForm={selectView} newUser={makeNewUser} token={token} />
   ) : (
-    <Login selectForm={selectView} />
+    <Login selectForm={selectView} token={token} />
   )
 }
 
