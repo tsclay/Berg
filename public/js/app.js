@@ -65891,12 +65891,32 @@ var Auth = function Auth() {
       form = _useState2[0],
       setForm = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      newUser = _useState4[0],
+      setNewUser = _useState4[1];
+
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+
   var selectView = function selectView() {
     if (form === 0) setForm(1);else setForm(0);
   };
 
+  var makeNewUser = function makeNewUser(e) {
+    e.preventDefault();
+    console.log(e); // setNewUser({
+    //   firstName: '',
+    //   lastName: '',
+    //   username: '',
+    //   password: '',
+    //   email: '',
+    // })
+  };
+
   return form === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    selectForm: selectView
+    selectForm: selectView,
+    newUser: makeNewUser,
+    token: token
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
     selectForm: selectView
   });
@@ -65921,10 +65941,7 @@ if (document.title === 'Login | Register') {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* eslint-disable prettier/prettier */
-
 
 
 var Login = function Login(props) {
@@ -65935,7 +65952,7 @@ var Login = function Login(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
+    className: "min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "px-6 py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -65943,8 +65960,8 @@ var Login = function Login(props) {
   }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "mx-auto",
     method: "POST",
-    action: "/users/find"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
+    action: "/user/find"
+  }, "@csrf", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
     className: "mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
     className: "ml-3"
@@ -66004,14 +66021,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Register = function Register(props) {
-  var selectForm = props.selectForm;
+  var selectForm = props.selectForm,
+      makeNewUser = props.makeNewUser,
+      token = props.token;
 
   var handleForm = function handleForm() {
     selectForm();
   };
 
+  var handleNewUser = function handleNewUser(e) {
+    makeNewUser(e);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
+    className: "min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "px-6 py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -66019,14 +66042,18 @@ var Register = function Register(props) {
   }, "Signup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "mx-auto",
     method: "POST",
-    action: "/users/create"
+    action: "/user/create"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
     className: "mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
     className: "ml-3"
   }, "About You"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: token
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block",
     htmlFor: "first-name"
   }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -66113,9 +66140,9 @@ var Register = function Register(props) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/TimClay/sDev/Berg/resources/js/App.jsx */"./resources/js/App.jsx");
-__webpack_require__(/*! /Users/TimClay/sDev/Berg/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/TimClay/sDev/Berg/resources/sass/main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/timclay/sDev/Berg/resources/js/App.jsx */"./resources/js/App.jsx");
+__webpack_require__(/*! /Users/timclay/sDev/Berg/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/timclay/sDev/Berg/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

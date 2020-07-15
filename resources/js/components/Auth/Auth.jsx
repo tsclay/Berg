@@ -5,14 +5,29 @@ import Register from './Register'
 
 const Auth = () => {
   const [form, setForm] = useState(0)
+  const [newUser, setNewUser] = useState({})
+
+  const token = document.querySelector('meta[name="csrf-token"]').content
 
   const selectView = () => {
     if (form === 0) setForm(1)
     else setForm(0)
   }
 
+  const makeNewUser = e => {
+    e.preventDefault()
+    console.log(e)
+    // setNewUser({
+    //   firstName: '',
+    //   lastName: '',
+    //   username: '',
+    //   password: '',
+    //   email: '',
+    // })
+  }
+
   return form === 0 ? (
-    <Register selectForm={selectView} />
+    <Register selectForm={selectView} newUser={makeNewUser} token={token} />
   ) : (
     <Login selectForm={selectView} />
   )
