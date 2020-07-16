@@ -18,5 +18,9 @@ Route::get('/welcome', function () {
   return view('auth');
 });
 
+Route::get('/calculator', function () {
+  return view('calculator');
+});
+
 // Handle the new user; 
 Route::post('/user/create', 'UserController@create');
