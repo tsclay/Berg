@@ -66161,6 +66161,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logic/js/Transformations */ "./resources/js/components/Calculator/logic/js/Transformations.js");
+/* harmony import */ var _StaffNotation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StaffNotation */ "./resources/js/components/Calculator/StaffNotation.jsx");
+
 
 
 
@@ -66185,7 +66187,7 @@ var CalculatorDisplay = function CalculatorDisplay(props) {
         className: "w-8"
       }, e);
     }));
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StaffNotation__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CalculatorDisplay);
@@ -66273,6 +66275,27 @@ var CalculatorInput = function CalculatorInput() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CalculatorInput);
+
+/***/ }),
+
+/***/ "./resources/js/components/Calculator/StaffNotation.jsx":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/Calculator/StaffNotation.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StaffNotation = function StaffNotation() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Notation component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Music staff here"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StaffNotation);
 
 /***/ }),
 
