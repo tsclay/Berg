@@ -66171,6 +66171,9 @@ var Calculator = function Calculator() {
     });
 
     if (!isNaN(output[output.length - 1])) {
+      output = output.filter(function (n) {
+        return !isNaN(n);
+      });
       setSet(output);
     } else if (output.length === 0) {
       setSet([]);
