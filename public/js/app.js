@@ -66171,19 +66171,23 @@ var CalculatorDisplay = function CalculatorDisplay(props) {
   var data = new _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__["default"](set);
   var transpositions = data.transpositions,
       inversions = data.inversions;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the set as a prop"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "getTranspositions"), transpositions.map(function (t) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the set as a prop"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Transpositions"), transpositions.map(function (t, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: "T".concat(index),
       className: "flex flex-row"
     }, t.map(function (e) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        key: "t".concat(e),
         className: "w-8"
       }, e);
     }));
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Inversions"), inversions.map(function (i) {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Inversions"), inversions.map(function (i, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: "T".concat(index, "I"),
       className: "flex flex-row"
     }, i.map(function (e) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        key: "i".concat(e),
         className: "w-8"
       }, e);
     }));

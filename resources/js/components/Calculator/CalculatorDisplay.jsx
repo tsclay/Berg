@@ -10,19 +10,23 @@ const CalculatorDisplay = props => {
   return (
     <div>
       <h3>This is the set as a prop</h3>
-      <h4>getTranspositions</h4>
-      {transpositions.map(t => (
-        <div className="flex flex-row">
+      <h4>Transpositions</h4>
+      {transpositions.map((t, index) => (
+        <div key={`T${index}`} className="flex flex-row">
           {t.map(e => (
-            <span className="w-8">{e}</span>
+            <span key={`t${e}`} className="w-8">
+              {e}
+            </span>
           ))}
         </div>
       ))}
       <h4>Inversions</h4>
-      {inversions.map(i => (
-        <div className="flex flex-row">
+      {inversions.map((i, index) => (
+        <div key={`T${index}I`} className="flex flex-row">
           {i.map(e => (
-            <span className="w-8">{e}</span>
+            <span key={`i${e}`} className="w-8">
+              {e}
+            </span>
           ))}
         </div>
       ))}
