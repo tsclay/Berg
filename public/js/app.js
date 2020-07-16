@@ -91429,7 +91429,7 @@ var Transformations = /*#__PURE__*/function () {
   }]);
 
   return Transformations;
-}(); // const set = new Transformations([0, 4, 8])
+}(); // const set = new Transformations([0, 3, 7, 11])
 // console.log(JSON.stringify(set, null, '\t'))
 
 
