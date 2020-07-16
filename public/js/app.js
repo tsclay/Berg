@@ -90740,8 +90740,6 @@ __webpack_require__(/*! ./components/Auth/Auth.jsx */ "./resources/js/components
 
 __webpack_require__(/*! ./components/Calculator/Calculator.jsx */ "./resources/js/components/Calculator/Calculator.jsx");
 
-__webpack_require__(/*! ./components/Calculator/StaffNotation.jsx */ "./resources/js/components/Calculator/StaffNotation.jsx");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -91069,12 +91067,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _CalculatorInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorInput */ "./resources/js/components/Calculator/CalculatorInput.jsx");
+/* harmony import */ var _MusicStaff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MusicStaff */ "./resources/js/components/Calculator/MusicStaff.jsx");
+
 
 
 
 
 var Calculator = function Calculator() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex flex-row justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 
 if (document.title === 'Calculator') {
@@ -91103,27 +91105,37 @@ var CalculatorDisplay = function CalculatorDisplay(props) {
   var data = new _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__["default"](set);
   var transpositions = data.transpositions,
       inversions = data.inversions;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the set as a prop"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Transpositions"), transpositions.map(function (t, index) {
+  return set.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "transformations"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "transpositions"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Transpositions"), transpositions.map(function (t, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: "T".concat(index),
       className: "flex flex-row"
-    }, t.map(function (e) {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      className: "w-12"
+    }, "T", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, index)), t.map(function (e) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         key: "t".concat(e),
         className: "w-8"
       }, e);
     }));
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Inversions"), inversions.map(function (i, index) {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "inversions"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Inversions"), inversions.map(function (i, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: "T".concat(index, "I"),
       className: "flex flex-row"
-    }, i.map(function (e) {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      className: "w-12"
+    }, "T", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, index), "I"), i.map(function (e) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         key: "i".concat(e),
         className: "w-8"
       }, e);
     }));
-  }));
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Begin typing digits 0-9, t (10), and e (11) to see the details on your set!"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CalculatorDisplay);
@@ -91214,10 +91226,10 @@ var CalculatorInput = function CalculatorInput() {
 
 /***/ }),
 
-/***/ "./resources/js/components/Calculator/StaffNotation.jsx":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/Calculator/StaffNotation.jsx ***!
-  \**************************************************************/
+/***/ "./resources/js/components/Calculator/MusicStaff.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Calculator/MusicStaff.jsx ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -91225,24 +91237,36 @@ var CalculatorInput = function CalculatorInput() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vexflow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vexflow */ "./node_modules/vexflow/src/index.js");
+/* harmony import */ var vexflow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vexflow */ "./node_modules/vexflow/src/index.js");
 
 
 
-
-var StaffNotation = function StaffNotation() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Notation component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "boo"
+var MusicStaff = function MusicStaff() {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var vf = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Factory({
+      renderer: {
+        elementId: 'music-content',
+        width: 500,
+        height: 200
+      }
+    });
+    var score = vf.EasyScore();
+    var system = vf.System();
+    system.addStave({
+      voices: [score.voice(score.notes('C#5/q, B4, A4, G#4', {
+        stem: 'up'
+      })), score.voice(score.notes('C#4/h, C#4', {
+        stem: 'down'
+      }))]
+    }).addClef('treble').addTimeSignature('4/4');
+    vf.draw();
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "music-content"
   }));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (StaffNotation);
-
-if (document.title === 'Calculator') {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(StaffNotation, null), document.getElementById('staff-notation'));
-}
+/* harmony default export */ __webpack_exports__["default"] = (MusicStaff);
 
 /***/ }),
 

@@ -7,29 +7,45 @@ const CalculatorDisplay = props => {
   const data = new Transformations(set)
   const { transpositions, inversions } = data
 
-  return (
+  return set.length > 0 ? (
+    <div id="transformations">
+      <div id="transpositions">
+        <h4>Transpositions</h4>
+        {transpositions.map((t, index) => (
+          <div key={`T${index}`} className="flex flex-row">
+            <h4 className="w-12">
+              T<sub>{index}</sub>
+            </h4>
+            {t.map(e => (
+              <span key={`t${e}`} className="w-8">
+                {e}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div id="inversions">
+        <h4>Inversions</h4>
+        {inversions.map((i, index) => (
+          <div key={`T${index}I`} className="flex flex-row">
+            <h4 className="w-12">
+              T<sub>{index}</sub>I
+            </h4>
+            {i.map(e => (
+              <span key={`i${e}`} className="w-8">
+                {e}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
     <div>
-      <h3>This is the set as a prop</h3>
-      <h4>Transpositions</h4>
-      {transpositions.map((t, index) => (
-        <div key={`T${index}`} className="flex flex-row">
-          {t.map(e => (
-            <span key={`t${e}`} className="w-8">
-              {e}
-            </span>
-          ))}
-        </div>
-      ))}
-      <h4>Inversions</h4>
-      {inversions.map((i, index) => (
-        <div key={`T${index}I`} className="flex flex-row">
-          {i.map(e => (
-            <span key={`i${e}`} className="w-8">
-              {e}
-            </span>
-          ))}
-        </div>
-      ))}
+      <h4>
+        Begin typing digits 0-9, t (10), and e (11) to see the details on your
+        set!
+      </h4>
     </div>
   )
 }
