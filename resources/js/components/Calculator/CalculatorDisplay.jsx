@@ -1,6 +1,6 @@
 import React from 'react'
 import Transformations from './logic/js/Transformations'
-import StaffNotation from './StaffNotation'
+// import StaffNotation from './StaffNotation'
 
 const CalculatorDisplay = props => {
   const { set } = props
@@ -30,7 +30,6 @@ const CalculatorDisplay = props => {
           ))}
         </div>
       ))}
-      <StaffNotation />
     </div>
   )
 }

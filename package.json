@@ -14,7 +14,8 @@
         "laravel-mix": "^5.0.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
-        "tailwindcss": "^1.4.6"
+        "tailwindcss": "^1.4.6",
+        "vexflow": "^3.0.9"
     },
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
