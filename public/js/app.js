@@ -66125,6 +66125,77 @@ var Register = function Register(props) {
 /*!***********************************************************!*\
   !*** ./resources/js/components/Calculator/Calculator.jsx ***!
   \***********************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _CalculatorInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorInput */ "./resources/js/components/Calculator/CalculatorInput.jsx");
+
+
+
+
+var Calculator = function Calculator() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+};
+
+if (document.title === 'Calculator') {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Calculator, null), document.getElementById('calculator'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Calculator/CalculatorDisplay.jsx":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/Calculator/CalculatorDisplay.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logic/js/Transformations */ "./resources/js/components/Calculator/logic/js/Transformations.js");
+
+
+
+var CalculatorDisplay = function CalculatorDisplay(props) {
+  var set = props.set;
+  var data = new _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__["default"](set);
+  var transpositions = data.transpositions,
+      inversions = data.inversions;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "This is the set as a prop"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "getTranspositions"), transpositions.map(function (t) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "flex flex-row"
+    }, t.map(function (e) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "w-8"
+      }, e);
+    }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Inversions"), inversions.map(function (i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "flex flex-row"
+    }, i.map(function (e) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "w-8"
+      }, e);
+    }));
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CalculatorDisplay);
+
+/***/ }),
+
+/***/ "./resources/js/components/Calculator/CalculatorInput.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/Calculator/CalculatorInput.jsx ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66134,6 +66205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _CalculatorDisplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorDisplay */ "./resources/js/components/Calculator/CalculatorDisplay.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -66157,7 +66229,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Calculator = function Calculator() {
+
+var CalculatorInput = function CalculatorInput() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       set = _useState2[0],
@@ -66194,14 +66267,179 @@ var Calculator = function Calculator() {
       key: num,
       className: "w-8"
     }, num);
-  })));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorDisplay__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    set: set
+  }));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Calculator);
+/* harmony default export */ __webpack_exports__["default"] = (CalculatorInput);
 
-if (document.title === 'Calculator') {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Calculator, null), document.getElementById('calculator'));
-}
+/***/ }),
+
+/***/ "./resources/js/components/Calculator/logic/js/Transformations.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Calculator/logic/js/Transformations.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Transformations; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Transformations = /*#__PURE__*/function () {
+  function Transformations(userSet) {
+    _classCallCheck(this, Transformations);
+
+    this.sortedSet = userSet.sort(function (a, b) {
+      return a - b;
+    });
+    this.transpositions = this.getTranspositions();
+    this.inversions = this.getInversions();
+    this.isSymmetrical = this.isSymmetrical();
+  }
+
+  _createClass(Transformations, [{
+    key: "getTranspositions",
+    value: function getTranspositions() {
+      var arrayCopy = this.sortedSet.slice(0);
+      var resultSet = [];
+      var idxValue = 0;
+      var transpositions = [];
+
+      for (var i = 0; i < 12; i++) {
+        for (var j = 0; j < arrayCopy.length; j++) {
+          idxValue = arrayCopy[j] + i;
+
+          if (idxValue >= 12) {
+            idxValue %= 12;
+          }
+
+          resultSet.push(idxValue);
+        } // console.log(resultSet);
+
+
+        transpositions.push(resultSet);
+        resultSet = [];
+      }
+
+      return transpositions;
+    }
+  }, {
+    key: "transposeSet",
+    value: function transposeSet() {
+      var semitones = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var transposedArray = this.sortedSet.slice(0);
+
+      for (var i = 0; i < transposedArray.length; i++) {
+        transposedArray[i] += semitones;
+
+        if (transposedArray[i] >= 12) {
+          transposedArray[i] %= 12;
+        }
+      }
+
+      return transposedArray;
+    }
+  }, {
+    key: "invertSet",
+    value: function invertSet() {
+      var invCenter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var invertedArray = this.sortedSet.slice(0);
+
+      for (var i = 0; i < invertedArray.length; i++) {
+        invertedArray[i] = 12 - invertedArray[i] + invCenter;
+
+        if (invertedArray[i] >= 12) {
+          invertedArray[i] %= 12;
+        }
+      }
+
+      return invertedArray;
+    } // Fixed invert and transpose methods; now, just gotta fix getInversions without breaking the rest
+
+  }, {
+    key: "getInversions",
+    value: function getInversions() {
+      var invertedArray = this.sortedSet.slice(0);
+      var resultSet = [];
+      var idxValue = 0;
+      var transpositions = [];
+
+      for (var i = 0; i < invertedArray.length; i++) {
+        invertedArray[i] = 12 - invertedArray[i];
+
+        if (invertedArray[i] >= 12) {
+          invertedArray[i] %= 12;
+        }
+      }
+
+      for (var _i = 0; _i < 12; _i++) {
+        for (var j = 0; j < invertedArray.length; j++) {
+          idxValue = invertedArray[j] + _i;
+
+          if (idxValue >= 12) {
+            idxValue %= 12;
+          }
+
+          resultSet.push(idxValue);
+        } // console.log(resultSet);
+
+
+        transpositions.push(resultSet);
+        resultSet = [];
+      }
+
+      return transpositions;
+    }
+  }, {
+    key: "isSymmetrical",
+    value: function isSymmetrical() {
+      var props = {
+        isSymmetrical: false,
+        transposedMatches: {},
+        inversionMatches: {}
+      };
+      var sortedSetStr = this.sortedSet.join('');
+
+      for (var i = 0; i < this.transpositions.length; i++) {
+        var transposeClone = this.transpositions[i].slice(0);
+        var transposedSetStr = transposeClone.sort(function (a, b) {
+          return a - b;
+        }).join('');
+        var invertClone = this.inversions[i].slice(0);
+        var invertedSetStr = invertClone.sort(function (a, b) {
+          return a - b;
+        }).join('');
+
+        if (transposedSetStr.includes(sortedSetStr)) {
+          props.transposedMatches["t".concat(i)] = this.transpositions[i];
+        }
+
+        if (invertedSetStr.includes(sortedSetStr)) {
+          props.inversionMatches["t".concat(i, "i")] = this.inversions[i];
+        }
+      }
+
+      if (Object.keys(props.transposedMatches).length > 0 || Object.keys(props.inversionMatches).length > 0) {
+        props.isSymmetrical = true;
+      }
+
+      return props;
+    }
+  }]);
+
+  return Transformations;
+}(); // const set = new Transformations([0, 4, 8])
+// console.log(JSON.stringify(set, null, '\t'))
+
+
+
 
 /***/ }),
 
