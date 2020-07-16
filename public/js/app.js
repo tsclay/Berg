@@ -91097,17 +91097,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logic/js/Transformations */ "./resources/js/components/Calculator/logic/js/Transformations.js");
+/* harmony import */ var _logic_js_NormalForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logic/js/NormalForm */ "./resources/js/components/Calculator/logic/js/NormalForm.js");
+
 
  // import StaffNotation from './StaffNotation'
 
 var CalculatorDisplay = function CalculatorDisplay(props) {
   var set = props.set;
   var data = new _logic_js_Transformations__WEBPACK_IMPORTED_MODULE_1__["default"](set);
+  var formOfSet = new _logic_js_NormalForm__WEBPACK_IMPORTED_MODULE_2__["default"](set);
   var transpositions = data.transpositions,
       inversions = data.inversions;
+  var primeForm = formOfSet.primeForm;
   return set.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "transformations"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Prime Form: ", primeForm), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "transpositions"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Transpositions"), transpositions.map(function (t, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -91253,9 +91257,16 @@ var MusicStaff = function MusicStaff() {
     var score = vf.EasyScore();
     var system = vf.System();
     system.addStave({
-      voices: [score.voice(score.notes('C#5/q, B4, A4, G#4', {
+      voices: [score.voice(score.notes('Bb4/q, A4/q, C5/q, Bn4/q', {
         stem: 'up'
-      })), score.voice(score.notes('C#4/h, C#4', {
+      })), score.voice(score.notes('F4/h, G4/h', {
+        stem: 'down'
+      }))]
+    }).addClef('treble').addTimeSignature('4/4');
+    system.addStave({
+      voices: [score.voice(score.notes('Bb4/q, A4/q, C5/q, Bn4/q', {
+        stem: 'up'
+      })), score.voice(score.notes('F4/h, G4/h', {
         stem: 'down'
       }))]
     }).addClef('treble').addTimeSignature('4/4');
@@ -91267,6 +91278,191 @@ var MusicStaff = function MusicStaff() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MusicStaff);
+
+/***/ }),
+
+/***/ "./resources/js/components/Calculator/logic/js/NormalForm.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Calculator/logic/js/NormalForm.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NormalForm; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// 0 2 4 9
+// — sumsArray = [7, 10, 10, 9]
+// — rotateRightIdx = 1
+// — 9 0 2 4
+// 0 2 4 9 10
+// — sumsArray = [11, 7, 10, 10, 10]
+// — rotateRightIdx = 2
+// — 9 10 0 2 4
+// 0 1 3 4 7 8 10
+// — sumsArray = [10, 11, 9, 11, 10, 11, 10]
+// — rotateRightIdx = 3
+// — 7 8 10 0 1 3 4
+// 0 1 2 4 5 7 8 10
+// — sumsArray = [10, 11, 10, 11, 10, 11, 11, 10]
+// —sums2Array = [9, 12, 9, 12, 9, 12, 12, 8]
+// — rotateRightIdx = 8
+// — 0 1 2 4 5 7 8 10
+var NormalForm = /*#__PURE__*/function () {
+  function NormalForm(userSet) {
+    _classCallCheck(this, NormalForm);
+
+    this.sortedSet = userSet.sort(function (a, b) {
+      return a - b;
+    });
+    this.normalForm = this.rotate(this.sortedSet);
+    this.normalFormInvert = this.getInvertNormalForm(this.sortedSet);
+    this.primeForm = this.getPrimeForm();
+  } // This now returns the formatted sums with min being what it is and non-mins being set to 12
+
+
+  _createClass(NormalForm, [{
+    key: "findMinimum",
+    value: function findMinimum() {
+      var endPoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2;
+      var flipIdx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var startPoint = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+      var array = arguments.length > 3 ? arguments[3] : undefined;
+      // Set the pointers
+      var end = array.length - endPoint;
+      var start = array.length - startPoint;
+      var sumsArray = [];
+      var sum; // Go through the array, subtract startPoint from endPoint and push diffs to the sumsArray at the same index as the startPoint for that calculation
+
+      while (start >= 0) {
+        if (start === flipIdx) {
+          end = array.length - startPoint;
+        }
+
+        sum = array[end] - array[start] + 12;
+
+        if (sum >= 12) {
+          sum %= 12;
+        }
+
+        sumsArray.push(sum);
+        start--;
+        end--;
+      } // Change non-minimum matches to 12 and push matches to an array that checks for duplicates of minimum value
+
+
+      var duplicatesOfMin = [];
+      var sumMin = Math.min.apply(Math, sumsArray);
+
+      for (var i = 0; i < sumsArray.length; i++) {
+        if (sumsArray[i] === sumMin) {
+          sumsArray[i] = sumMin;
+          duplicatesOfMin.push(sumsArray[i]);
+        } else {
+          sumsArray[i] = 12;
+        }
+      } // If there are duplicates, go back and do it again, moving the endPoint and flip points so that we break the tie
+
+
+      if (duplicatesOfMin.length > 1) {
+        var breakTies = this.findMinimum(endPoint + 1, flipIdx + 1, startPoint, array); // console.log('breakTies portion', breakTies)
+
+        return breakTies;
+      } // Return the sums if no duplicates of minimum value
+      // console.log('sumsArray at end', sumsArray)
+
+
+      return {
+        result: sumsArray,
+        indexOfMin: sumsArray.indexOf(Math.min.apply(Math, sumsArray))
+      };
+    }
+  }, {
+    key: "rotate",
+    value: function rotate(array) {
+      var minIndex = this.findMinimum(2, 0, 1, array).indexOfMin;
+      var normalFormArray = array.slice(0);
+      var rotateRightIdx = minIndex + 1;
+
+      while (rotateRightIdx > 0) {
+        normalFormArray.unshift(normalFormArray.pop());
+        rotateRightIdx--;
+      }
+
+      return normalFormArray;
+    }
+  }, {
+    key: "getInvertNormalForm",
+    value: function getInvertNormalForm(array) {
+      var invertedArray = array.slice(0);
+
+      for (var i = 0; i < invertedArray.length; i++) {
+        invertedArray[i] = 12 - invertedArray[i];
+
+        if (invertedArray[i] >= 12) {
+          invertedArray[i] %= 12;
+        }
+      }
+
+      invertedArray = invertedArray.sort(function (a, b) {
+        return a - b;
+      });
+      var normalForm = this.rotate(invertedArray);
+      return normalForm;
+    }
+  }, {
+    key: "getPrimeForm",
+    value: function getPrimeForm() {
+      var normTranspose = this.normalForm.slice(0);
+      var normInvert = this.normalFormInvert.slice(0);
+      var length = normTranspose.length;
+
+      if (normTranspose[0] > 0) {
+        var first = normTranspose[0];
+
+        for (var i = 0; i < length; i++) {
+          normTranspose[i] -= first;
+
+          if (normTranspose[i] < 0) {
+            normTranspose[i] += 12;
+          }
+        }
+      }
+
+      if (normInvert[0] > 0) {
+        var _first = normInvert[0];
+
+        for (var _i = 0; _i < length; _i++) {
+          normInvert[_i] -= _first;
+
+          if (normInvert[_i] < 0) {
+            normInvert[_i] += 12;
+          }
+        }
+      }
+
+      for (var _i2 = 0; _i2 < length; _i2++) {
+        if (normInvert[_i2] === normTranspose[_i2]) continue;else if (normInvert[_i2] > normTranspose[_i2]) return normTranspose;
+        break;
+      }
+
+      return normInvert;
+    }
+  }]);
+
+  return NormalForm;
+}(); // const someSet = new NormalForm([5, 3, 11, 8])
+// console.log(someSet.findMinimum())
+// console.log(someSet)
+
+
+
 
 /***/ }),
 

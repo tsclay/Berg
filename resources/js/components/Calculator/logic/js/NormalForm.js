@@ -81,7 +81,6 @@ export default class NormalForm {
   }
 
   rotate(array) {
-    console.log('start of rotate()', array)
     const minIndex = this.findMinimum(2, 0, 1, array).indexOfMin
     const normalFormArray = array.slice(0)
     let rotateRightIdx = minIndex + 1
@@ -91,7 +90,6 @@ export default class NormalForm {
       rotateRightIdx--
     }
 
-    console.log(normalFormArray)
     return normalFormArray
   }
 
@@ -107,7 +105,7 @@ export default class NormalForm {
     invertedArray = invertedArray.sort((a, b) => a - b)
 
     const normalForm = this.rotate(invertedArray)
-    console.log('the result of inverting then normaling', normalForm)
+
     return normalForm
   }
 
@@ -125,7 +123,7 @@ export default class NormalForm {
         }
       }
     }
-    console.log('this is normTranspose: ', normTranspose)
+
     if (normInvert[0] > 0) {
       const first = normInvert[0]
       for (let i = 0; i < length; i++) {
@@ -135,7 +133,6 @@ export default class NormalForm {
         }
       }
     }
-    console.log('this is normInvert: ', normInvert)
 
     for (let i = 0; i < length; i++) {
       if (normInvert[i] === normTranspose[i]) continue
@@ -147,6 +144,6 @@ export default class NormalForm {
   }
 }
 
-const someSet = new NormalForm([9, 6, 4, 0])
+// const someSet = new NormalForm([5, 3, 11, 8])
 // console.log(someSet.findMinimum())
-console.log(someSet)
+// console.log(someSet)

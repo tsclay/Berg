@@ -1,14 +1,18 @@
 import React from 'react'
 import Transformations from './logic/js/Transformations'
+import NormalForm from './logic/js/NormalForm'
 // import StaffNotation from './StaffNotation'
 
 const CalculatorDisplay = props => {
   const { set } = props
   const data = new Transformations(set)
+  const formOfSet = new NormalForm(set)
   const { transpositions, inversions } = data
+  const { primeForm } = formOfSet
 
   return set.length > 0 ? (
     <div id="transformations">
+      <div>Prime Form: {primeForm}</div>
       <div id="transpositions">
         <h4>Transpositions</h4>
         {transpositions.map((t, index) => (

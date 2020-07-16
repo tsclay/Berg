@@ -13,8 +13,18 @@ const MusicStaff = () => {
     system
       .addStave({
         voices: [
-          score.voice(score.notes('C#5/q, B4, A4, G#4', { stem: 'up' })),
-          score.voice(score.notes('C#4/h, C#4', { stem: 'down' }))
+          score.voice(score.notes('Bb4/q, A4/q, C5/q, Bn4/q', { stem: 'up' })),
+          score.voice(score.notes('F4/h, G4/h', { stem: 'down' }))
+        ]
+      })
+      .addClef('treble')
+      .addTimeSignature('4/4')
+
+    system
+      .addStave({
+        voices: [
+          score.voice(score.notes('Bb4/q, A4/q, C5/q, Bn4/q', { stem: 'up' })),
+          score.voice(score.notes('F4/h, G4/h', { stem: 'down' }))
         ]
       })
       .addClef('treble')
