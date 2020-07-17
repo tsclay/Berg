@@ -91121,9 +91121,7 @@ var Calculator = function Calculator() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
     set: set,
     changeText: changeText
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "music-content"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
     set: set
   }));
 };
@@ -91271,7 +91269,7 @@ var MusicStaff = function MusicStaff(props) {
   var set = props.set;
   var ball = 0; // ball is a placeholder static so that useEffect doesn't run every time I type
 
-  var drawNotes = function drawNotes() {
+  var drawNotes = function drawNotes(context, stave) {
     // const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
     // renderer.resize(1000, 500)
     // const context = renderer.getContext()
@@ -91290,11 +91288,13 @@ var MusicStaff = function MusicStaff(props) {
         duration: '8d'
       });
     });
-    vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter.FormatAndDraw(notes);
+    vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter.FormatAndDraw(context, stave, notes);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var div = document.getElementById('music-content');
+    var div = document.createElement('div');
+    div.setAttribute('id', 'svg-container');
+    document.getElementById('music-content').appendChild(div);
     var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG);
     console.log(renderer.getContext()); // Size our SVG:
 
@@ -91306,8 +91306,12 @@ var MusicStaff = function MusicStaff(props) {
 
     stave.addClef('treble'); // Connect it to the rendering context and draw!
 
-    stave.setContext(context).draw(); // if (set.length > 0) drawNotes(context, stave)
-  }, [ball]);
+    stave.setContext(context).draw();
+    if (set.length > 0) drawNotes(context, stave);
+    return function () {
+      document.getElementById('svg-container').remove();
+    };
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "music-content"
   }));

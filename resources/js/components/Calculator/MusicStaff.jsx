@@ -29,7 +29,7 @@ const MusicStaff = props => {
   const ball = 0
   // ball is a placeholder static so that useEffect doesn't run every time I type
 
-  const drawNotes = () => {
+  const drawNotes = (context, stave) => {
     // const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
     // renderer.resize(1000, 500)
     // const context = renderer.getContext()
@@ -54,11 +54,13 @@ const MusicStaff = props => {
           })
     })
 
-    Vex.Flow.Formatter.FormatAndDraw(notes)
+    Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
   }
 
   useEffect(() => {
-    const div = document.getElementById('music-content')
+    const div = document.createElement('div')
+    div.setAttribute('id', 'svg-container')
+    document.getElementById('music-content').appendChild(div)
     const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
     console.log(renderer.getContext())
 
@@ -77,8 +79,12 @@ const MusicStaff = props => {
     // Connect it to the rendering context and draw!
     stave.setContext(context).draw()
 
-    // if (set.length > 0) drawNotes(context, stave)
-  }, [ball])
+    if (set.length > 0) drawNotes(context, stave)
+
+    return () => {
+      document.getElementById('svg-container').remove()
+    }
+  })
 
   return (
     <div>
