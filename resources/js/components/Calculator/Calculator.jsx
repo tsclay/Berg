@@ -25,6 +25,10 @@ const Calculator = () => {
   return (
     <div className="flex flex-row justify-between">
       <CalculatorInput set={set} changeText={changeText} />
+      <div>
+        <h3>Staff Container</h3>
+        <div id="music-content" />
+      </div>
       <MusicStaff set={set} />
     </div>
   )

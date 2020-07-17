@@ -91121,7 +91121,9 @@ var Calculator = function Calculator() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
     set: set,
     changeText: changeText
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "music-content"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
     set: set
   }));
 };
@@ -91246,43 +91248,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vexflow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vexflow */ "./node_modules/vexflow/src/index.js");
 /* harmony import */ var _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logic/js/PitchClassNotation */ "./resources/js/components/Calculator/logic/js/PitchClassNotation.js");
+/* eslint-disable indent */
 
 
-
+ // const renderStaff = () => {
+//   // Create an SVG renderer and attach it to the DIV element named "boo".
+//   const div = document.getElementById('music-content')
+//   const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
+//   // Size our SVG:
+//   renderer.resize(1000, 500)
+//   // And get a drawing context:
+//   const context = renderer.getContext()
+//   // Create a stave at position 10, 40 of width 400 on the canvas.
+//   const stave = new Vex.Flow.Stave(10, 40, 900)
+//   // Add a clef and time signature.
+//   stave.addClef('treble')
+//   // Connect it to the rendering context and draw!
+//   stave.setContext(context).draw()
+// }
 
 var MusicStaff = function MusicStaff(props) {
   var set = props.set;
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var translatedSet = 'C#5/q, B4, A4, G#4';
-    var numerator = 4;
+  var ball = 0; // ball is a placeholder static so that useEffect doesn't run every time I type
 
-    if (set.length > 0) {
-      translatedSet = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set);
-      translatedSet = translatedSet.map(function (n) {
-        var formatted = "".concat(n, "4/q");
-        return formatted;
+  var drawNotes = function drawNotes() {
+    // const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
+    // renderer.resize(1000, 500)
+    // const context = renderer.getContext()
+    // const stave = new Vex.Flow.Stave(10, 40, 900)
+    // stave.addClef('treble')
+    // stave.setContext(context).draw()
+    var pitches = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set);
+    var notes = pitches.map(function (p) {
+      return p.length > 1 ? new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
+        clef: 'treble',
+        keys: ["".concat(p[0].toLowerCase(), "/4")],
+        duration: '8d'
+      }).addAccidental(0, new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Accidental("".concat(p.slice(1)))) : new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
+        clef: 'treble',
+        keys: ["".concat(p[0], "/4")],
+        duration: '8d'
       });
-      translatedSet = translatedSet.join('');
-      numerator = set.length;
-    }
-
-    var vf = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Factory({
-      renderer: {
-        elementId: 'music-content',
-        width: 500,
-        height: 200
-      }
     });
-    var score = vf.EasyScore();
-    var system = vf.System();
-    console.log(translatedSet);
-    system.addStave({
-      voices: [score.voice(score.notes(translatedSet, {
-        stem: 'up'
-      }))]
-    }).addClef('treble');
-    vf.draw();
-  });
+    vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter.FormatAndDraw(notes);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var div = document.getElementById('music-content');
+    var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG);
+    console.log(renderer.getContext()); // Size our SVG:
+
+    renderer.resize(1000, 200); // And get a drawing context:
+
+    var context = renderer.getContext(); // Create a stave at position 10, 40 of width 400 on the canvas.
+
+    var stave = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Stave(10, 40, 900); // Add a clef and time signature.
+
+    stave.addClef('treble'); // Connect it to the rendering context and draw!
+
+    stave.setContext(context).draw(); // if (set.length > 0) drawNotes(context, stave)
+  }, [ball]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "music-content"
   }));
@@ -91835,9 +91860,9 @@ var Transformations = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/timclay/sDev/Berg/resources/js/App.jsx */"./resources/js/App.jsx");
-__webpack_require__(/*! /Users/timclay/sDev/Berg/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/timclay/sDev/Berg/resources/sass/main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/TimClay/sDev/Berg/resources/js/App.jsx */"./resources/js/App.jsx");
+__webpack_require__(/*! /Users/TimClay/sDev/Berg/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/TimClay/sDev/Berg/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
