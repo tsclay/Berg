@@ -87103,9 +87103,9 @@ Flow.getGlyphProps.duration_codes = {
       getWidth(scale = Flow.DEFAULT_NOTATION_FONT_SCALE) {
         return new _glyph__WEBPACK_IMPORTED_MODULE_2__["Glyph"](this.code_head || 'noteheadBlack', scale).getMetrics().width;
       },
-      stem: true,
+      stem: false,
       stem_offset: 0,
-      flag: true,
+      flag: false,
       beam_count: 1,
       code_flag_upstem: 'flag8thUp',
       code_flag_downstem: 'flag8thDown',
@@ -91266,37 +91266,30 @@ __webpack_require__.r(__webpack_exports__);
 // }
 
 var MusicStaff = function MusicStaff(props) {
-  var set = props.set;
-  var ball = 0; // ball is a placeholder static so that useEffect doesn't run every time I type
+  var set = props.set; // ball is a placeholder static so that useEffect doesn't run every time I type
 
   var drawNotes = function drawNotes(context, stave) {
-    // const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
-    // renderer.resize(1000, 500)
-    // const context = renderer.getContext()
-    // const stave = new Vex.Flow.Stave(10, 40, 900)
-    // stave.addClef('treble')
-    // stave.setContext(context).draw()
     var pitches = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set);
     var notes = pitches.map(function (p) {
       return p.length > 1 ? new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
         clef: 'treble',
         keys: ["".concat(p[0].toLowerCase(), "/4")],
         duration: '8d'
-      }).addAccidental(0, new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Accidental("".concat(p.slice(1)))) : new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
+      }).addAccidental(0, new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Accidental("".concat(p.slice(1)))).setContext(context).setStave(stave) : new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
         clef: 'treble',
         keys: ["".concat(p[0], "/4")],
         duration: '8d'
-      });
+      }).setContext(context).setStave(stave);
     });
     vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter.FormatAndDraw(context, stave, notes);
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var div = document.createElement('div');
-    div.setAttribute('id', 'svg-container');
-    document.getElementById('music-content').appendChild(div);
-    var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG);
-    console.log(renderer.getContext()); // Size our SVG:
+    // const div = document.createElement('div')
+    // div.setAttribute('id', 'svg-container')
+    // document.getElementById('music-content').appendChild(div)
+    var div = document.getElementById('music-content');
+    var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG); // Size our SVG:
 
     renderer.resize(1000, 200); // And get a drawing context:
 
@@ -91309,7 +91302,7 @@ var MusicStaff = function MusicStaff(props) {
     stave.setContext(context).draw();
     if (set.length > 0) drawNotes(context, stave);
     return function () {
-      document.getElementById('svg-container').remove();
+      div.innerHTML = '';
     };
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

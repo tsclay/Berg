@@ -26,18 +26,9 @@ import { pitchClass } from './logic/js/PitchClassNotation'
 
 const MusicStaff = props => {
   const { set } = props
-  const ball = 0
   // ball is a placeholder static so that useEffect doesn't run every time I type
 
   const drawNotes = (context, stave) => {
-    // const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
-    // renderer.resize(1000, 500)
-    // const context = renderer.getContext()
-    // const stave = new Vex.Flow.Stave(10, 40, 900)
-    // stave.addClef('treble')
-
-    // stave.setContext(context).draw()
-
     const pitches = pitchClass.translate(set)
 
     const notes = pitches.map(p => {
@@ -46,23 +37,24 @@ const MusicStaff = props => {
             clef: 'treble',
             keys: [`${p[0].toLowerCase()}/4`],
             duration: '8d'
-          }).addAccidental(0, new Vex.Flow.Accidental(`${p.slice(1)}`))
+          }).addAccidental(0, new Vex.Flow.Accidental(`${p.slice(1)}`)).setContext(context).setStave(stave)
         : new Vex.Flow.StaveNote({
             clef: 'treble',
             keys: [`${p[0]}/4`],
             duration: '8d'
-          })
+          }).setContext(context).setStave(stave)
     })
 
     Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
   }
 
   useEffect(() => {
-    const div = document.createElement('div')
-    div.setAttribute('id', 'svg-container')
-    document.getElementById('music-content').appendChild(div)
+    // const div = document.createElement('div')
+    // div.setAttribute('id', 'svg-container')
+    // document.getElementById('music-content').appendChild(div)
+
+    const div = document.getElementById('music-content')
     const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
-    console.log(renderer.getContext())
 
     // Size our SVG:
     renderer.resize(1000, 200)
@@ -82,7 +74,7 @@ const MusicStaff = props => {
     if (set.length > 0) drawNotes(context, stave)
 
     return () => {
-      document.getElementById('svg-container').remove()
+      div.innerHTML = ''
     }
   })
 
