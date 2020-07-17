@@ -1,27 +1,9 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
 import CalculatorDisplay from './CalculatorDisplay'
 
-const CalculatorInput = () => {
-  const [set, setSet] = useState([])
+const CalculatorInput = props => {
+  const { set, changeText } = props
 
-  const changeText = e => {
-    let output = []
-    const setToArray = e.target.value.split('')
-    setToArray.forEach(v => {
-      if (v.toLowerCase() === 't') output = [...output, 10]
-      else if (v.toLowerCase() === 'e') output = [...output, 11]
-      else output = [...output, parseInt(v)]
-    })
-    if (!isNaN(output[output.length - 1])) {
-      output = output.filter(n => !isNaN(n))
-      setSet(output)
-    } else if (output.length === 0) {
-      setSet([])
-    }
-  }
-
-  console.log('this is the input state: ', set)
   return (
     <div>
       <form action="">

@@ -14,7 +14,7 @@ const pitchClass = {
     'Bb',
     'Cb'
   ],
-  translate: (set) => {
+  translate: set => {
     const setNotes = []
     for (let i = 0; i < set.length; i++) {
       if (pitchClass.preferFlats === false) {
@@ -32,14 +32,17 @@ const pitchClass = {
       }
     }
     console.log(setNotes)
+    return setNotes
   },
   preferFlats: false,
   // The following will be a setting that if 'true' will tell the program to scan the key collections below and return a pop up that lets the user know that their set is most similar to a given key
   scanForKeyRelation: false
 }
 
-pitchClass.translate([0, 2, 4, 5, 6, 9, 10])
+// pitchClass.translate([0, 2, 4, 5, 6, 9, 10])
 
+//==================================================
+// For if scanForKeyRelation is true
 const keyCollections = {
   C_major: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
   C_harmonic_minor: ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'B'],
@@ -71,18 +74,18 @@ const keyCollections = {
   G_major: ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
   G_harmonic_minor: ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F#'],
   G_melodic_minor: ['G', 'A', 'Bb', 'C', 'D', 'E', 'F#'],
-  Gsharp_major: ['G#', 'A#', 'B#', 'C#', 'D#', 'E#', 'Fx'],
-  Gsharp_harmonic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'Fx'],
-  Gsharp_melodic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E#', 'Fx'],
+  Gsharp_major: ['G#', 'A#', 'B#', 'C#', 'D#', 'E#', 'F##'],
+  Gsharp_harmonic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'F##'],
+  Gsharp_melodic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F##'],
   Aflat_major: ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G'],
   Aflat_harmonic_minor: ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'G'],
   Aflat_melodic_minor: ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F', 'G'],
   A_major: ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
   A_harmonic_minor: ['A', 'B', 'C', 'D', 'E', 'F', 'G#'],
   A_melodic_minor: ['A', 'B', 'C', 'D', 'E', 'F#', 'G#'],
-  Asharp_major: ['A#', 'B#', 'Cx', 'D#', 'E#', 'Fx', 'Gx'],
-  Asharp_harmonic_minor: ['A#', 'B#', 'C#', 'D#', 'E#', 'F#', 'Gx'],
-  Asharp_melodic_minor: ['A#', 'B#', 'C#', 'D#', 'E#', 'Fx', 'Gx'],
+  Asharp_major: ['A#', 'B#', 'C##', 'D#', 'E#', 'F##', 'G##'],
+  Asharp_harmonic_minor: ['A#', 'B#', 'C#', 'D#', 'E#', 'F#', 'G##'],
+  Asharp_melodic_minor: ['A#', 'B#', 'C#', 'D#', 'E#', 'F##', 'G##'],
   Bflat_major: ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
   Bflat_harmonic_minor: ['Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'A'],
   Bflat_melodic_minor: ['Bb', 'C', 'Db', 'Eb', 'F', 'G', 'A'],
@@ -93,6 +96,8 @@ const keyCollections = {
   Cflat_harmonic_minor: ['Cb', 'Db', 'Ebb', 'Fb', 'Gb', 'Abb', 'Bb'],
   Cflat_melodic_minor: ['Cb', 'Db', 'Ebb', 'Fb', 'Gb', 'Ab', 'Bb']
 }
+
+export { pitchClass, keyCollections }
 
 // If set inputted has at least 1 sharp and no flats
 const sharpMajorKeys = {
@@ -119,8 +124,8 @@ const sharpMinorKeys = {
   Fsharp_melodic_minor: ['F#', 'G#', 'A', 'B', 'C#', 'D#', 'E#'],
   Csharp_harmonic_minor: ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B#'],
   Csharp_melodic_minor: ['C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B#'],
-  Gsharp_harmonic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'Fx'],
-  Gsharp_melodic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E#', 'Fx']
+  Gsharp_harmonic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'F##'],
+  Gsharp_melodic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F##']
 }
 
 // If inputted set has at least 1 flat and no sharps

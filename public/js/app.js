@@ -91068,15 +91068,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _CalculatorInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorInput */ "./resources/js/components/Calculator/CalculatorInput.jsx");
 /* harmony import */ var _MusicStaff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MusicStaff */ "./resources/js/components/Calculator/MusicStaff.jsx");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 
 
 var Calculator = function Calculator() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      set = _useState2[0],
+      setSet = _useState2[1];
+
+  var changeText = function changeText(e) {
+    var output = [];
+    var setToArray = e.target.value.split('');
+    setToArray.forEach(function (v) {
+      if (v.toLowerCase() === 't') output = [].concat(_toConsumableArray(output), [10]);else if (v.toLowerCase() === 'e') output = [].concat(_toConsumableArray(output), [11]);else output = [].concat(_toConsumableArray(output), [parseInt(v)]);
+    });
+
+    if (!isNaN(output[output.length - 1])) {
+      output = output.filter(function (n) {
+        return !isNaN(n);
+      });
+      setSet(output);
+    } else if (output.length === 0) {
+      setSet([]);
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    set: set,
+    changeText: changeText
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    set: set
+  }));
 };
 
 if (document.title === 'Calculator') {
@@ -91157,57 +91204,13 @@ var CalculatorDisplay = function CalculatorDisplay(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _CalculatorDisplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorDisplay */ "./resources/js/components/Calculator/CalculatorDisplay.jsx");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var _CalculatorDisplay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CalculatorDisplay */ "./resources/js/components/Calculator/CalculatorDisplay.jsx");
 
 
 
-
-
-var CalculatorInput = function CalculatorInput() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      set = _useState2[0],
-      setSet = _useState2[1];
-
-  var changeText = function changeText(e) {
-    var output = [];
-    var setToArray = e.target.value.split('');
-    setToArray.forEach(function (v) {
-      if (v.toLowerCase() === 't') output = [].concat(_toConsumableArray(output), [10]);else if (v.toLowerCase() === 'e') output = [].concat(_toConsumableArray(output), [11]);else output = [].concat(_toConsumableArray(output), [parseInt(v)]);
-    });
-
-    if (!isNaN(output[output.length - 1])) {
-      output = output.filter(function (n) {
-        return !isNaN(n);
-      });
-      setSet(output);
-    } else if (output.length === 0) {
-      setSet([]);
-    }
-  };
-
-  console.log('this is the input state: ', set);
+var CalculatorInput = function CalculatorInput(props) {
+  var set = props.set,
+      changeText = props.changeText;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -91221,7 +91224,7 @@ var CalculatorInput = function CalculatorInput() {
       key: num,
       className: "w-8"
     }, num);
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorDisplay__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorDisplay__WEBPACK_IMPORTED_MODULE_1__["default"], {
     set: set
   }));
 };
@@ -91242,11 +91245,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vexflow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vexflow */ "./node_modules/vexflow/src/index.js");
+/* harmony import */ var _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logic/js/PitchClassNotation */ "./resources/js/components/Calculator/logic/js/PitchClassNotation.js");
 
 
 
-var MusicStaff = function MusicStaff() {
+
+var MusicStaff = function MusicStaff(props) {
+  var set = props.set;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var translatedSet = 'C#5/q, B4, A4, G#4';
+    var numerator = 4;
+
+    if (set.length > 0) {
+      translatedSet = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set);
+      translatedSet = translatedSet.map(function (n) {
+        var formatted = "".concat(n, "4/q");
+        return formatted;
+      });
+      translatedSet = translatedSet.join('');
+      numerator = set.length;
+    }
+
     var vf = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Factory({
       renderer: {
         elementId: 'music-content',
@@ -91256,20 +91275,12 @@ var MusicStaff = function MusicStaff() {
     });
     var score = vf.EasyScore();
     var system = vf.System();
+    console.log(translatedSet);
     system.addStave({
-      voices: [score.voice(score.notes('Bb4/q, A4/q, C5/q, Bn4/q', {
+      voices: [score.voice(score.notes(translatedSet, {
         stem: 'up'
-      })), score.voice(score.notes('F4/h, G4/h', {
-        stem: 'down'
       }))]
-    }).addClef('treble').addTimeSignature('4/4');
-    system.addStave({
-      voices: [score.voice(score.notes('Bb4/q, A4/q, C5/q, Bn4/q', {
-        stem: 'up'
-      })), score.voice(score.notes('F4/h, G4/h', {
-        stem: 'down'
-      }))]
-    }).addClef('treble').addTimeSignature('4/4');
+    }).addClef('treble');
     vf.draw();
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -91463,6 +91474,168 @@ var NormalForm = /*#__PURE__*/function () {
 
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Calculator/logic/js/PitchClassNotation.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Calculator/logic/js/PitchClassNotation.js ***!
+  \***************************************************************************/
+/*! exports provided: pitchClass, keyCollections */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pitchClass", function() { return pitchClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyCollections", function() { return keyCollections; });
+var pitchClass = {
+  noteNames: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
+  enharmonics: ['B#', 'Db', 'D', 'Eb', 'E', 'E#', 'Gb', 'G', 'Ab', 'A', 'Bb', 'Cb'],
+  translate: function translate(set) {
+    var setNotes = [];
+
+    for (var i = 0; i < set.length; i++) {
+      if (pitchClass.preferFlats === false) {
+        var index = set[i];
+        setNotes.push(pitchClass.noteNames[index]);
+      } else if (pitchClass.preferFlats === true) {
+        var _index = set[i];
+        var noteValue = pitchClass.noteNames[_index];
+
+        if (noteValue.includes('#') === true) {
+          noteValue = pitchClass.enharmonics[_index];
+          setNotes.push(noteValue);
+        } else {
+          setNotes.push(pitchClass.noteNames[_index]);
+        }
+      }
+    }
+
+    console.log(setNotes);
+    return setNotes;
+  },
+  preferFlats: false,
+  // The following will be a setting that if 'true' will tell the program to scan the key collections below and return a pop up that lets the user know that their set is most similar to a given key
+  scanForKeyRelation: false
+}; // pitchClass.translate([0, 2, 4, 5, 6, 9, 10])
+//==================================================
+// For if scanForKeyRelation is true
+
+var keyCollections = {
+  C_major: ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+  C_harmonic_minor: ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'B'],
+  C_melodic_minor: ['C', 'D', 'Eb', 'F', 'G', 'A', 'B'],
+  Csharp_major: ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#'],
+  Csharp_harmonic_minor: ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B#'],
+  Csharp_melodic_minor: ['C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B#'],
+  Dflat_major: ['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C'],
+  Dflat_harmonic_minor: ['Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bbb', 'C'],
+  Dflat_melodic_minor: ['Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb', 'C'],
+  D_major: ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
+  D_harmonic_minor: ['D', 'E', 'F', 'G', 'A', 'Bb', 'C#'],
+  D_melodic_minor: ['D', 'E', 'F', 'G', 'A', 'B', 'C#'],
+  Eflat_major: ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D'],
+  Eflat_harmonic_minor: ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'D'],
+  Eflat_melodic_minor: ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'C', 'D'],
+  E_major: ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+  E_harmonic_minor: ['E', 'F#', 'G', 'A', 'B', 'C', 'D#'],
+  E_melodic_minor: ['E', 'F#', 'G', 'A', 'B', 'C#', 'D#'],
+  F_major: ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+  F_harmonic_minor: ['F', 'G', 'Ab', 'Bb', 'C', 'Db', 'E'],
+  F_melodic_minor: ['F', 'G', 'Ab', 'Bb', 'C', 'D', 'E'],
+  Fsharp_major: ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#'],
+  Fsharp_harmonic_minor: ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E#'],
+  Fsharp_melodic_minor: ['F#', 'G#', 'A', 'B', 'C#', 'D#', 'E#'],
+  Gflat_major: ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F'],
+  Gflat_harmonic_minor: ['Gb', 'Ab', 'Bbb', 'Cb', 'Db', 'Ebb', 'F'],
+  Gflat_melodic_minor: ['Gb', 'Ab', 'Bbb', 'Cb', 'Db', 'Eb', 'F'],
+  G_major: ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
+  G_harmonic_minor: ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F#'],
+  G_melodic_minor: ['G', 'A', 'Bb', 'C', 'D', 'E', 'F#'],
+  Gsharp_major: ['G#', 'A#', 'B#', 'C#', 'D#', 'E#', 'F##'],
+  Gsharp_harmonic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'F##'],
+  Gsharp_melodic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F##'],
+  Aflat_major: ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G'],
+  Aflat_harmonic_minor: ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'G'],
+  Aflat_melodic_minor: ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F', 'G'],
+  A_major: ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
+  A_harmonic_minor: ['A', 'B', 'C', 'D', 'E', 'F', 'G#'],
+  A_melodic_minor: ['A', 'B', 'C', 'D', 'E', 'F#', 'G#'],
+  Asharp_major: ['A#', 'B#', 'C##', 'D#', 'E#', 'F##', 'G##'],
+  Asharp_harmonic_minor: ['A#', 'B#', 'C#', 'D#', 'E#', 'F#', 'G##'],
+  Asharp_melodic_minor: ['A#', 'B#', 'C#', 'D#', 'E#', 'F##', 'G##'],
+  Bflat_major: ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
+  Bflat_harmonic_minor: ['Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'A'],
+  Bflat_melodic_minor: ['Bb', 'C', 'Db', 'Eb', 'F', 'G', 'A'],
+  B_major: ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'],
+  B_harmonic_minor: ['B', 'C#', 'D', 'E', 'F#', 'G', 'A#'],
+  B_melodic_minor: ['B', 'C#', 'D', 'E', 'F#', 'G#', 'A#'],
+  Cflat_major: ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb'],
+  Cflat_harmonic_minor: ['Cb', 'Db', 'Ebb', 'Fb', 'Gb', 'Abb', 'Bb'],
+  Cflat_melodic_minor: ['Cb', 'Db', 'Ebb', 'Fb', 'Gb', 'Ab', 'Bb']
+};
+ // If set inputted has at least 1 sharp and no flats
+
+var sharpMajorKeys = {
+  // Major: G D A E B F# C#
+  G_major: ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
+  D_major: ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
+  A_major: ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
+  E_major: ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+  B_major: ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'],
+  Fsharp_major: ['F#', 'G#', 'A#', 'B', 'C#', 'D#', 'E#'],
+  Csharp_major: ['C#', 'D#', 'E#', 'F#', 'G#', 'A#', 'B#']
+}; // If inputted set has at least 1 sharp and no flats
+
+var sharpMinorKeys = {
+  // Minor: E B F# C# G# d# a#
+  A_harmonic_minor: ['A', 'B', 'C', 'D', 'E', 'F', 'G#'],
+  A_melodic_minor: ['A', 'B', 'C', 'D', 'E', 'F#', 'G#'],
+  E_harmonic_minor: ['E', 'F#', 'G', 'A', 'B', 'C', 'D#'],
+  E_melodic_minor: ['E', 'F#', 'G', 'A', 'B', 'C#', 'D#'],
+  B_harmonic_minor: ['B', 'C#', 'D', 'E', 'F#', 'G', 'A#'],
+  B_melodic_minor: ['B', 'C#', 'D', 'E', 'F#', 'G#', 'A#'],
+  Fsharp_harmonic_minor: ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E#'],
+  Fsharp_melodic_minor: ['F#', 'G#', 'A', 'B', 'C#', 'D#', 'E#'],
+  Csharp_harmonic_minor: ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B#'],
+  Csharp_melodic_minor: ['C#', 'D#', 'E', 'F#', 'G#', 'A#', 'B#'],
+  Gsharp_harmonic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E', 'F##'],
+  Gsharp_melodic_minor: ['G#', 'A#', 'B', 'C#', 'D#', 'E#', 'F##']
+}; // If inputted set has at least 1 flat and no sharps
+
+var flatMajorKeys = {
+  // Major: F Bb Eb Ab Db Gb Cb
+  F_major: ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+  Bflat_major: ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
+  Eflat_major: ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D'],
+  Aflat_major: ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G'],
+  Dflat_major: ['Db', 'Eb', 'F', 'Gb', 'Ab', 'Bb', 'C'],
+  Gflat_major: ['Gb', 'Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F'],
+  Cflat_major: ['Cb', 'Db', 'Eb', 'Fb', 'Gb', 'Ab', 'Bb']
+}; // If inputted set has at least 1 flat and some sharps
+
+var flatMinorKeys = {
+  // D G C F Bb Eb Ab
+  D_harmonic_minor: ['D', 'E', 'F', 'G', 'A', 'Bb', 'C#'],
+  D_melodic_minor: ['D', 'E', 'F', 'G', 'A', 'B', 'C#'],
+  G_harmonic_minor: ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F#'],
+  G_melodic_minor: ['G', 'A', 'Bb', 'C', 'D', 'E', 'F#'],
+  C_harmonic_minor: ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'B'],
+  C_melodic_minor: ['C', 'D', 'Eb', 'F', 'G', 'A', 'B'],
+  F_harmonic_minor: ['F', 'G', 'Ab', 'Bb', 'C', 'Db', 'E'],
+  F_melodic_minor: ['F', 'G', 'Ab', 'Bb', 'C', 'D', 'E'],
+  Bflat_harmonic_minor: ['Bb', 'C', 'Db', 'Eb', 'F', 'Gb', 'A'],
+  Bflat_melodic_minor: ['Bb', 'C', 'Db', 'Eb', 'F', 'G', 'A'],
+  Eflat_harmonic_minor: ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'Cb', 'D'],
+  Eflat_melodic_minor: ['Eb', 'F', 'Gb', 'Ab', 'Bb', 'C', 'D'],
+  Aflat_harmonic_minor: ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'G'],
+  Aflat_melodic_minor: ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'F', 'G']
+}; // array = [];
+// for (i = 0; i < pitchClass.noteNames.length; i++) {
+// 	lowerLetter = pitchClass.noteNames[i].toLowerCase();
+// 	array.push(lowerLetter);
+// }
+// console.log(array);
 
 /***/ }),
 
