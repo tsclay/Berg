@@ -32,7 +32,7 @@ const MusicStaff = props => {
     //   .joinVoices([voice])
     //   .format([voice], 400)
 
-    new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 400)
+    new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 500)
 
     voice.draw(context, stave)
 
@@ -48,13 +48,13 @@ const MusicStaff = props => {
     const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
 
     // Size our SVG:
-    renderer.resize(1000, 200)
+    renderer.resize(700, 200)
 
     // And get a drawing context:
     const context = renderer.getContext()
 
     // Create a stave at position 10, 40 of width 400 on the canvas.
-    const stave = new Vex.Flow.Stave(50, 40, 900)
+    const stave = new Vex.Flow.Stave(50, 40, 650)
 
     // Add a clef and time signature.
     stave.addClef('treble')

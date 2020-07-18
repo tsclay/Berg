@@ -92028,7 +92028,7 @@ var MusicStaff = function MusicStaff(props) {
               //   .joinVoices([voice])
               //   .format([voice], 400)
 
-              new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Formatter().joinVoices([voice]).format([voice], 400);
+              new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Formatter().joinVoices([voice]).format([voice], 500);
               voice.draw(context, stave); // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
 
             case 8:
@@ -92051,11 +92051,11 @@ var MusicStaff = function MusicStaff(props) {
     var div = document.getElementById('music-content');
     var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Renderer.Backends.SVG); // Size our SVG:
 
-    renderer.resize(1000, 200); // And get a drawing context:
+    renderer.resize(700, 200); // And get a drawing context:
 
     var context = renderer.getContext(); // Create a stave at position 10, 40 of width 400 on the canvas.
 
-    var stave = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Stave(50, 40, 900); // Add a clef and time signature.
+    var stave = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Stave(50, 40, 650); // Add a clef and time signature.
 
     stave.addClef('treble'); // Connect it to the rendering context and draw!
 
