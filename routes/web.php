@@ -22,5 +22,8 @@ Route::get('/calculator', function () {
   return view('calculator');
 });
 
+// Handle login
+Route::post('/auth/find', 'UserController@find');
+
 // Handle the new user; 
-Route::post('/user/create', 'UserController@create');
+Route::post('/auth/create', 'UserController@create');

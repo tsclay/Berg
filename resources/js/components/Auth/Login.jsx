@@ -12,7 +12,7 @@ const Login = (props) => {
     <div className="min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-center">Login</div>
-        <form className="mx-auto" method="POST" action="/user/find">
+        <form className="mx-auto" method="POST" action="/auth/find">
           <input type="hidden" name="_token" value={token} />
           <fieldset className="mb-3">
             <legend className="ml-3">Account</legend>

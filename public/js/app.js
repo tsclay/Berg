@@ -91648,7 +91648,7 @@ var Login = function Login(props) {
   }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "mx-auto",
     method: "POST",
-    action: "/user/find"
+    action: "/auth/find"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "hidden",
     name: "_token",

@@ -26,4 +26,22 @@ class UserController extends Controller
 
     return redirect('/calculator');
   }
+
+  public function find(Request $request)
+  {
+    $email = $request->email;
+    $password = $request->password;
+
+    $user = DB::table('users')->where('email', $email)->first();
+
+    if ($user) {
+      if ($user->password === $password) {
+        // dd('They match!');
+        return redirect('/calculator');
+      } else {
+        // dd('They don\'t match!');
+        return redirect('/auth');
+      }
+    };
+  }
 }
