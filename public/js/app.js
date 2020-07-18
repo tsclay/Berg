@@ -91691,6 +91691,7 @@ var Transformations = /*#__PURE__*/function () {
   function Transformations(userSet) {
     _classCallCheck(this, Transformations);
 
+    this.userSet = userSet;
     this.sortedSet = userSet.sort(function (a, b) {
       return a - b;
     });
@@ -91702,7 +91703,7 @@ var Transformations = /*#__PURE__*/function () {
   _createClass(Transformations, [{
     key: "getTranspositions",
     value: function getTranspositions() {
-      var arrayCopy = this.sortedSet.slice(0);
+      var arrayCopy = this.userSet.slice(0);
       var resultSet = [];
       var idxValue = 0;
       var transpositions = [];
@@ -91761,7 +91762,7 @@ var Transformations = /*#__PURE__*/function () {
   }, {
     key: "getInversions",
     value: function getInversions() {
-      var invertedArray = this.sortedSet.slice(0);
+      var invertedArray = this.userSet.slice(0);
       var resultSet = [];
       var idxValue = 0;
       var transpositions = [];
