@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/auth', function () {
   return view('auth');
 });
 
