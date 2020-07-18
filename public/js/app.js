@@ -91099,7 +91099,13 @@ var Calculator = function Calculator() {
       set = _useState2[0],
       setSet = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      firstLoad = _useState4[0],
+      setFirstLoad = _useState4[1];
+
   var changeText = function changeText(e) {
+    setFirstLoad(false);
     var output = [];
     var setToArray = e.target.value.split('');
     setToArray.forEach(function (v) {
@@ -91116,13 +91122,12 @@ var Calculator = function Calculator() {
     }
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex flex-row justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
     set: set,
     changeText: changeText
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    set: set
+    set: set,
+    firstLoad: firstLoad
   }));
 };
 
@@ -91250,50 +91255,69 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var div = document.getElementById('music-content');
+var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG); // And get a drawing context:
+
+var context = renderer.getContext(); // Create a stave at position 10, 40 of width 400 on the canvas.
+
+var stave = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Stave(10, 40, 900);
+console.log('this code is executing'); // Size our SVG:
+
+renderer.resize(1000, 200); // Add a clef and time signature.
+
+stave.addClef('treble'); // Connect it to the rendering context and draw!
+
+var drawNotes = function drawNotes(context, stave, set) {
+  var pitches = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set); // const group = context.openGroup()
+  // context.svg.removeChild(group)
+
+  var notes = pitches.map(function (p) {
+    return p.length > 1 ? new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
+      clef: 'treble',
+      keys: ["".concat(p[0].toLowerCase(), "/4")],
+      duration: '8'
+    }).addAccidental(0, new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Accidental("".concat(p.slice(1)))) : new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
+      clef: 'treble',
+      keys: ["".concat(p[0], "/4")],
+      duration: '8'
+    });
+  });
+  var voice = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Voice({
+    num_beats: notes.length,
+    beat_value: 8
+  });
+  voice.addTickables(notes);
+  new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter().joinVoices([voice]).format([voice], 400);
+  voice.draw(context, stave); // context.closeGroup()
+  // voice.draw(context, stave)
+  // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
+};
 
 var MusicStaff = function MusicStaff(props) {
-  var set = props.set;
-
-  var drawNotes = function drawNotes(context, stave) {
-    var pitches = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set);
-    var notes = pitches.map(function (p) {
-      return p.length > 1 ? new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
-        clef: 'treble',
-        keys: ["".concat(p[0].toLowerCase(), "/4")],
-        duration: '8d'
-      }).addAccidental(0, new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Accidental("".concat(p.slice(1)))).setContext(context).setStave(stave) : new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.StaveNote({
-        clef: 'treble',
-        keys: ["".concat(p[0], "/4")],
-        duration: '8d'
-      }).setContext(context).setStave(stave);
-    });
-    vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter.FormatAndDraw(context, stave, notes);
-  };
-
+  var set = props.set,
+      firstLoad = props.firstLoad;
+  var oneShot = true;
+  var group = 'ball';
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    // const div = document.createElement('div')
-    // div.setAttribute('id', 'svg-container')
-    // document.getElementById('music-content').appendChild(div)
-    var div = document.getElementById('music-content');
-    var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG); // Size our SVG:
+    if (firstLoad) {
+      stave.setContext(context).draw();
+      console.log(firstLoad);
+    } else if (!firstLoad && set.length > 0) {
+      group = context.openGroup();
+      drawNotes(context, stave, set);
+      context.closeGroup();
+    }
 
-    renderer.resize(1000, 200); // And get a drawing context:
-
-    var context = renderer.getContext(); // Create a stave at position 10, 40 of width 400 on the canvas.
-
-    var stave = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Stave(10, 40, 900); // Add a clef and time signature.
-
-    stave.addClef('treble'); // Connect it to the rendering context and draw!
-
-    stave.setContext(context).draw();
-    if (set.length > 0) drawNotes(context, stave);
     return function () {
-      div.innerHTML = '';
+      if (typeof group !== 'string') context.svg.removeChild(group); // else div.innerHTML = ''
     };
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "music-content"
-  }));
+  return null; // return (
+  //   <div>
+  //     <h3>Staff Container</h3>
+  //     <div id="music-content" />
+  //   </div>
+  // )
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MusicStaff);

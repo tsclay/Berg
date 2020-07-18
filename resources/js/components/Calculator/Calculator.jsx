@@ -5,8 +5,10 @@ import MusicStaff from './MusicStaff'
 
 const Calculator = () => {
   const [set, setSet] = useState([])
+  const [firstLoad, setFirstLoad] = useState(true)
 
   const changeText = e => {
+    setFirstLoad(false)
     let output = []
     const setToArray = e.target.value.split('')
     setToArray.forEach(v => {
@@ -23,10 +25,10 @@ const Calculator = () => {
   }
 
   return (
-    <div className="flex flex-row justify-between">
+    <>
       <CalculatorInput set={set} changeText={changeText} />
-      <MusicStaff set={set} />
-    </div>
+      <MusicStaff set={set} firstLoad={firstLoad} />
+    </>
   )
 }
 

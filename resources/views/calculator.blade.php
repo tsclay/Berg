@@ -13,7 +13,10 @@
 </head>
 
 <body>
-  <div id="calculator"></div>
+  <div class="flex flex-row justify-between">
+    <div id="calculator"></div>
+    <div id="music-content"></div>
+  </div>
 
   <script type="text/javascript" src="/js/app.js"></script>
 </body>
