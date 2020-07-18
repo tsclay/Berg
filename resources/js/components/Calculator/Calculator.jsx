@@ -30,7 +30,7 @@ const Calculator = () => {
   }
 
   return (
-    <div className="flex flex-row justify-between">
+    <div className="grid grid-rows-1 grid-cols-2">
       <div>
         <form onSubmit={changeSet}>
           <input

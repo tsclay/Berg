@@ -7,3 +7,12 @@
 fieldset {
     border: 2px solid black;
 }
+
+#transformations {
+    #transpositions,
+    #inversions,
+    #prime-form,
+    #normal-form {
+        margin-bottom: 2em;
+    }
+}

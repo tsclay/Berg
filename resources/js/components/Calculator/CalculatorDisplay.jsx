@@ -8,11 +8,28 @@ const CalculatorDisplay = props => {
   const data = new Transformations(set)
   const formOfSet = new NormalForm(set)
   const { transpositions, inversions } = data
-  const { primeForm } = formOfSet
+  const { primeForm, normalForm } = formOfSet
 
   return set.length > 0 ? (
     <div id="transformations">
-      <div>Prime Form: {primeForm}</div>
+      <div id="prime-form" className="flex flex-col">
+        <h4 className="w-full">Prime Form</h4>
+        <div className="flex flex-row">
+          {primeForm.map(n => (
+            <span className="w-8">{n}</span>
+          ))}
+        </div>
+      </div>
+
+      <div id="normal-form" className="flex flex-col">
+        <h4 className="w-full">Normal Form</h4>
+        <div className="flex flex-row">
+          {normalForm.map(n => (
+            <span className="w-8">{n}</span>
+          ))}
+        </div>
+      </div>
+
       <div id="transpositions">
         <h4>Transpositions</h4>
         {transpositions.map((t, index) => (
@@ -28,6 +45,7 @@ const CalculatorDisplay = props => {
           </div>
         ))}
       </div>
+
       <div id="inversions">
         <h4>Inversions</h4>
         {inversions.map((i, index) => (

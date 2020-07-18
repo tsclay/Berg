@@ -14,7 +14,7 @@
 
 <body>
   @include('includes.nav')
-  <div id="calculator" class="mx-5"></div>
+  <div id="calculator" class="mx-auto w-4/5"></div>
 
   <script type="text/javascript" src="/js/app.js"></script>
 </body>

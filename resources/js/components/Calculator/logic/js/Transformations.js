@@ -1,7 +1,7 @@
 export default class Transformations {
   constructor(userSet) {
     this.userSet = userSet
-    this.sortedSet = userSet.sort((a, b) => a - b)
+    this.sortedSet = [...userSet].sort((a, b) => a - b)
     this.transpositions = this.getTranspositions()
     this.inversions = this.getInversions()
     this.isSymmetrical = this.isSymmetrical()
@@ -9,6 +9,7 @@ export default class Transformations {
 
   getTranspositions() {
     const arrayCopy = this.userSet.slice(0)
+    console.log(arrayCopy)
     let resultSet = []
     let idxValue = 0
     const transpositions = []
