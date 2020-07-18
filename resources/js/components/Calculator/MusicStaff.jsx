@@ -3,30 +3,8 @@ import React, { useEffect } from 'react'
 import Vex from 'vexflow'
 import { pitchClass } from './logic/js/PitchClassNotation'
 
-// const renderStaff = () => {
-//   // Create an SVG renderer and attach it to the DIV element named "boo".
-//   const div = document.getElementById('music-content')
-//   const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
-
-//   // Size our SVG:
-//   renderer.resize(1000, 500)
-
-//   // And get a drawing context:
-//   const context = renderer.getContext()
-
-//   // Create a stave at position 10, 40 of width 400 on the canvas.
-//   const stave = new Vex.Flow.Stave(10, 40, 900)
-
-//   // Add a clef and time signature.
-//   stave.addClef('treble')
-
-//   // Connect it to the rendering context and draw!
-//   stave.setContext(context).draw()
-// }
-
 const MusicStaff = props => {
   const { set } = props
-  // ball is a placeholder static so that useEffect doesn't run every time I type
 
   const drawNotes = (context, stave) => {
     const pitches = pitchClass.translate(set)

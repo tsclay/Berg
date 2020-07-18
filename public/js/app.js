@@ -91249,24 +91249,10 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable indent */
 
 
- // const renderStaff = () => {
-//   // Create an SVG renderer and attach it to the DIV element named "boo".
-//   const div = document.getElementById('music-content')
-//   const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
-//   // Size our SVG:
-//   renderer.resize(1000, 500)
-//   // And get a drawing context:
-//   const context = renderer.getContext()
-//   // Create a stave at position 10, 40 of width 400 on the canvas.
-//   const stave = new Vex.Flow.Stave(10, 40, 900)
-//   // Add a clef and time signature.
-//   stave.addClef('treble')
-//   // Connect it to the rendering context and draw!
-//   stave.setContext(context).draw()
-// }
+
 
 var MusicStaff = function MusicStaff(props) {
-  var set = props.set; // ball is a placeholder static so that useEffect doesn't run every time I type
+  var set = props.set;
 
   var drawNotes = function drawNotes(context, stave) {
     var pitches = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set);
