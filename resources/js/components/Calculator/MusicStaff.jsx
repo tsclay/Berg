@@ -6,29 +6,37 @@ import { pitchClass } from './logic/js/PitchClassNotation'
 const MusicStaff = props => {
   const { set } = props
 
-  const drawNotes = (context, stave) => {
+  const drawNotes = async (context, stave) => {
     const pitches = pitchClass.translate(set)
 
-    const notes = pitches.map(p => {
+    const notes = await pitches.map(p => {
       return p.length > 1
         ? new Vex.Flow.StaveNote({
             clef: 'treble',
             keys: [`${p[0].toLowerCase()}/4`],
-            duration: '8d'
-          })
-            .addAccidental(0, new Vex.Flow.Accidental(`${p.slice(1)}`))
-            .setContext(context)
-            .setStave(stave)
+            duration: '8'
+          }).addAccidental(0, new Vex.Flow.Accidental(`${p.slice(1)}`))
         : new Vex.Flow.StaveNote({
             clef: 'treble',
             keys: [`${p[0]}/4`],
-            duration: '8d'
+            duration: '8'
           })
-            .setContext(context)
-            .setStave(stave)
     })
+    console.log(notes, notes.length)
+    const voice = new Vex.Flow.Voice({
+      num_beats: notes.length,
+      beat_value: 8
+    }).addTickables(notes)
 
-    Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
+    // const formatter = new Vex.Flow.Formatter()
+    //   .joinVoices([voice])
+    //   .format([voice], 400)
+
+    new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 400)
+
+    voice.draw(context, stave)
+
+    // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
   }
 
   useEffect(() => {
@@ -46,7 +54,7 @@ const MusicStaff = props => {
     const context = renderer.getContext()
 
     // Create a stave at position 10, 40 of width 400 on the canvas.
-    const stave = new Vex.Flow.Stave(10, 40, 900)
+    const stave = new Vex.Flow.Stave(50, 40, 900)
 
     // Add a clef and time signature.
     stave.addClef('treble')
@@ -55,8 +63,6 @@ const MusicStaff = props => {
     stave.setContext(context).draw()
 
     if (set.length > 0) drawNotes(context, stave)
-
-    console.log(stave)
 
     return () => {
       div.innerHTML = ''
