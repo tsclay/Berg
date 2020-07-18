@@ -15,12 +15,17 @@ const MusicStaff = props => {
             clef: 'treble',
             keys: [`${p[0].toLowerCase()}/4`],
             duration: '8d'
-          }).addAccidental(0, new Vex.Flow.Accidental(`${p.slice(1)}`)).setContext(context).setStave(stave)
+          })
+            .addAccidental(0, new Vex.Flow.Accidental(`${p.slice(1)}`))
+            .setContext(context)
+            .setStave(stave)
         : new Vex.Flow.StaveNote({
             clef: 'treble',
             keys: [`${p[0]}/4`],
             duration: '8d'
-          }).setContext(context).setStave(stave)
+          })
+            .setContext(context)
+            .setStave(stave)
     })
 
     Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
@@ -50,6 +55,8 @@ const MusicStaff = props => {
     stave.setContext(context).draw()
 
     if (set.length > 0) drawNotes(context, stave)
+
+    console.log(stave)
 
     return () => {
       div.innerHTML = ''

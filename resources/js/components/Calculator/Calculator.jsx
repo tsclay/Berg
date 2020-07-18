@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import CalculatorInput from './CalculatorInput'
+// import CalculatorInput from './CalculatorInput'
+import CalculatorDisplay from './CalculatorDisplay'
 import MusicStaff from './MusicStaff'
 
 const Calculator = () => {
+  const [input, setInput] = useState([])
   const [set, setSet] = useState([])
 
   const changeText = e => {
@@ -16,15 +18,36 @@ const Calculator = () => {
     })
     if (!isNaN(output[output.length - 1])) {
       output = output.filter(n => !isNaN(n))
-      setSet(output)
+      setInput(output)
     } else if (output.length === 0) {
-      setSet([])
+      setInput([])
     }
+  }
+
+  const changeSet = e => {
+    e.preventDefault()
+    setSet(input)
   }
 
   return (
     <div className="flex flex-row justify-between">
-      <CalculatorInput set={set} changeText={changeText} />
+      <div>
+        <form onSubmit={changeSet}>
+          <input
+            onChange={changeText}
+            type="text"
+            placeholder="type your set here"
+          />
+        </form>
+        <div className="flex flex-row justify-even">
+          {set.map(num => (
+            <div key={num} className="w-8">
+              {num}
+            </div>
+          ))}
+        </div>
+        <CalculatorDisplay set={set} />
+      </div>
       <MusicStaff set={set} />
     </div>
   )

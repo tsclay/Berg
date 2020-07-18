@@ -91066,7 +91066,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _CalculatorInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorInput */ "./resources/js/components/Calculator/CalculatorInput.jsx");
+/* harmony import */ var _CalculatorDisplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CalculatorDisplay */ "./resources/js/components/Calculator/CalculatorDisplay.jsx");
 /* harmony import */ var _MusicStaff__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MusicStaff */ "./resources/js/components/Calculator/MusicStaff.jsx");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -91089,6 +91089,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+ // import CalculatorInput from './CalculatorInput'
 
 
 
@@ -91096,8 +91097,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Calculator = function Calculator() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
-      set = _useState2[0],
-      setSet = _useState2[1];
+      input = _useState2[0],
+      setInput = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      set = _useState4[0],
+      setSet = _useState4[1];
 
   var changeText = function changeText(e) {
     var output = [];
@@ -91110,18 +91116,35 @@ var Calculator = function Calculator() {
       output = output.filter(function (n) {
         return !isNaN(n);
       });
-      setSet(output);
+      setInput(output);
     } else if (output.length === 0) {
-      setSet([]);
+      setInput([]);
     }
+  };
+
+  var changeSet = function changeSet(e) {
+    e.preventDefault();
+    setSet(input);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    set: set,
-    changeText: changeText
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: changeSet
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: changeText,
+    type: "text",
+    placeholder: "type your set here"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex flex-row justify-even"
+  }, set.map(function (num) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: num,
+      className: "w-8"
+    }, num);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorDisplay__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    set: set
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MusicStaff__WEBPACK_IMPORTED_MODULE_3__["default"], {
     set: set
   }));
 };
@@ -91193,46 +91216,6 @@ var CalculatorDisplay = function CalculatorDisplay(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Calculator/CalculatorInput.jsx":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/Calculator/CalculatorInput.jsx ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CalculatorDisplay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CalculatorDisplay */ "./resources/js/components/Calculator/CalculatorDisplay.jsx");
-
-
-
-var CalculatorInput = function CalculatorInput(props) {
-  var set = props.set,
-      changeText = props.changeText;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    action: ""
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: changeText,
-    type: "text",
-    placeholder: "type your set here"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex flex-row justify-even"
-  }, set.map(function (num) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: num,
-      className: "w-8"
-    }, num);
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CalculatorDisplay__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    set: set
-  }));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (CalculatorInput);
-
-/***/ }),
-
 /***/ "./resources/js/components/Calculator/MusicStaff.jsx":
 /*!***********************************************************!*\
   !*** ./resources/js/components/Calculator/MusicStaff.jsx ***!
@@ -91287,6 +91270,7 @@ var MusicStaff = function MusicStaff(props) {
 
     stave.setContext(context).draw();
     if (set.length > 0) drawNotes(context, stave);
+    console.log(stave);
     return function () {
       div.innerHTML = '';
     };
@@ -91667,6 +91651,7 @@ var Transformations = /*#__PURE__*/function () {
   function Transformations(userSet) {
     _classCallCheck(this, Transformations);
 
+    this.userSet = userSet;
     this.sortedSet = userSet.sort(function (a, b) {
       return a - b;
     });
@@ -91678,7 +91663,7 @@ var Transformations = /*#__PURE__*/function () {
   _createClass(Transformations, [{
     key: "getTranspositions",
     value: function getTranspositions() {
-      var arrayCopy = this.sortedSet.slice(0);
+      var arrayCopy = this.userSet.slice(0);
       var resultSet = [];
       var idxValue = 0;
       var transpositions = [];
@@ -91737,7 +91722,7 @@ var Transformations = /*#__PURE__*/function () {
   }, {
     key: "getInversions",
     value: function getInversions() {
-      var invertedArray = this.sortedSet.slice(0);
+      var invertedArray = this.userSet.slice(0);
       var resultSet = [];
       var idxValue = 0;
       var transpositions = [];

@@ -1,5 +1,6 @@
 export default class Transformations {
   constructor(userSet) {
+    this.userSet = userSet
     this.sortedSet = userSet.sort((a, b) => a - b)
     this.transpositions = this.getTranspositions()
     this.inversions = this.getInversions()
@@ -7,7 +8,7 @@ export default class Transformations {
   }
 
   getTranspositions() {
-    const arrayCopy = this.sortedSet.slice(0)
+    const arrayCopy = this.userSet.slice(0)
     let resultSet = []
     let idxValue = 0
     const transpositions = []
@@ -51,7 +52,7 @@ export default class Transformations {
 
   // Fixed invert and transpose methods; now, just gotta fix getInversions without breaking the rest
   getInversions() {
-    const invertedArray = this.sortedSet.slice(0)
+    const invertedArray = this.userSet.slice(0)
     let resultSet = []
     let idxValue = 0
     const transpositions = []
