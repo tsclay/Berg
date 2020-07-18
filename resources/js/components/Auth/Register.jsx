@@ -2,7 +2,7 @@
 import React from 'react'
 
 const Register = (props) => {
-  const {selectForm,token} = props
+  const { selectForm, token } = props
 
   const handleForm = () => {
     selectForm()
