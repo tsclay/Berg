@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  @include('includes.nav')
   <div class="h-screen flex flex-col items-center container mx-auto" id="user-auth"></div>
   <script type="text/javascript" src="/js/app.js"></script>
 </body>

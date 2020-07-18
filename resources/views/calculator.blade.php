@@ -13,7 +13,8 @@
 </head>
 
 <body>
-  <div id="calculator"></div>
+  @include('includes.nav')
+  <div id="calculator" class="mx-5"></div>
 
   <script type="text/javascript" src="/js/app.js"></script>
 </body>
