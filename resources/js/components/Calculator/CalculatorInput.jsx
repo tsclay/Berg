@@ -11,6 +11,7 @@ const CalculatorInput = props => {
           onChange={changeText}
           type="text"
           placeholder="type your set here"
+          maxLength={12}
         />
       </form>
       <div className="flex flex-row justify-even">

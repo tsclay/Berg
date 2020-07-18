@@ -91221,7 +91221,8 @@ var CalculatorInput = function CalculatorInput(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: changeText,
     type: "text",
-    placeholder: "type your set here"
+    placeholder: "type your set here",
+    maxLength: 12
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-even"
   }, set.map(function (num) {
@@ -91254,18 +91255,22 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable indent */
 
 
+ //==================================================
+// This code runs once and only once because the initial music
+// staff needs one render and no re-renders
 
 var div = document.getElementById('music-content');
 var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Renderer.Backends.SVG); // And get a drawing context:
 
 var context = renderer.getContext(); // Create a stave at position 10, 40 of width 400 on the canvas.
 
-var stave = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Stave(10, 40, 900);
-console.log('this code is executing'); // Size our SVG:
+var stave = new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Stave(50, 40, 500); // Size our SVG:
 
-renderer.resize(1000, 200); // Add a clef and time signature.
+renderer.resize(600, 200); // Add a clef and time signature.
 
-stave.addClef('treble'); // Connect it to the rendering context and draw!
+stave.addClef('treble'); //==================================================
+// Transliterate the numbers into notes and draw them
+// into the stave already on the page
 
 var drawNotes = function drawNotes(context, stave, set) {
   var pitches = _logic_js_PitchClassNotation__WEBPACK_IMPORTED_MODULE_2__["pitchClass"].translate(set); // const group = context.openGroup()
@@ -91287,16 +91292,15 @@ var drawNotes = function drawNotes(context, stave, set) {
     beat_value: 8
   });
   voice.addTickables(notes);
-  new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter().joinVoices([voice]).format([voice], 400);
-  voice.draw(context, stave); // context.closeGroup()
-  // voice.draw(context, stave)
-  // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
-};
+  new vexflow__WEBPACK_IMPORTED_MODULE_1__["default"].Flow.Formatter().joinVoices([voice]).format([voice], 450);
+  voice.draw(context, stave);
+}; //==================================================
+// The React component that executes drawNotes() as the user types
+
 
 var MusicStaff = function MusicStaff(props) {
   var set = props.set,
       firstLoad = props.firstLoad;
-  var oneShot = true;
   var group = 'ball';
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (firstLoad) {
@@ -91312,12 +91316,7 @@ var MusicStaff = function MusicStaff(props) {
       if (typeof group !== 'string') context.svg.removeChild(group); // else div.innerHTML = ''
     };
   });
-  return null; // return (
-  //   <div>
-  //     <h3>Staff Container</h3>
-  //     <div id="music-content" />
-  //   </div>
-  // )
+  return null;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MusicStaff);

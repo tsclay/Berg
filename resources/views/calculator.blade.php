@@ -13,7 +13,8 @@
 </head>
 
 <body>
-  <div class="flex flex-row justify-between">
+  @include('includes.nav')
+  <div class="grid grid-rows-1 grid-cols-2 mx-5">
     <div id="calculator"></div>
     <div id="music-content"></div>
   </div>

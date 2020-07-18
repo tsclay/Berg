@@ -1,7 +1,11 @@
 /* eslint-disable indent */
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Vex from 'vexflow'
 import { pitchClass } from './logic/js/PitchClassNotation'
+
+//==================================================
+// This code runs once and only once because the initial music
+// staff needs one render and no re-renders
 
 const div = document.getElementById('music-content')
 const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
@@ -9,17 +13,17 @@ const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
 const context = renderer.getContext()
 
 // Create a stave at position 10, 40 of width 400 on the canvas.
-const stave = new Vex.Flow.Stave(10, 40, 900)
+const stave = new Vex.Flow.Stave(50, 40, 500)
 
-console.log('this code is executing')
 // Size our SVG:
-renderer.resize(1000, 200)
+renderer.resize(600, 200)
 
 // Add a clef and time signature.
 stave.addClef('treble')
 
-// Connect it to the rendering context and draw!
-
+//==================================================
+// Transliterate the numbers into notes and draw them
+// into the stave already on the page
 const drawNotes = (context, stave, set) => {
   const pitches = pitchClass.translate(set)
   // const group = context.openGroup()
@@ -42,20 +46,15 @@ const drawNotes = (context, stave, set) => {
   const voice = new Vex.Flow.Voice({ num_beats: notes.length, beat_value: 8 })
   voice.addTickables(notes)
 
-  new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 400)
+  new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 450)
 
   voice.draw(context, stave)
-  // context.closeGroup()
-
-  // voice.draw(context, stave)
-
-  // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
 }
 
+//==================================================
+// The React component that executes drawNotes() as the user types
 const MusicStaff = props => {
   const { set, firstLoad } = props
-  const oneShot = true
-
   let group = 'ball'
 
   useEffect(() => {
@@ -75,12 +74,6 @@ const MusicStaff = props => {
   })
 
   return null
-  // return (
-  //   <div>
-  //     <h3>Staff Container</h3>
-  //     <div id="music-content" />
-  //   </div>
-  // )
 }
 
 export default MusicStaff
