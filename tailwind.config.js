@@ -8,6 +8,11 @@ module.exports = {
       '3/4': '75%',
       full: '100%'
     },
+    height: {
+      '500': '500px',
+      '10': '10%',
+      '90': '90%'
+    },
     extend: {}
   },
   variants: {},
