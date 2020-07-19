@@ -95560,6 +95560,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Auth/Login.jsx");
 /* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Auth/Register.jsx");
+/* eslint-disable prettier/prettier */
 
 
 
@@ -95581,7 +95582,7 @@ var Auth = function Auth() {
 
 /* harmony default export */ __webpack_exports__["default"] = (Auth);
 
-if (document.title === 'Login' || document.title === 'Register') {
+if (document.title === 'Berg | Login' || document.title === 'Berg | Register') {
   react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Auth, null), document.getElementById('user-auth'));
 }
 
@@ -95605,6 +95606,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Login = function Login(props) {
   var token = props.token;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.title = 'Berg | Login';
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95680,6 +95684,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Register = function Register(props) {
   var token = props.token;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.title = 'Berg | Register';
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

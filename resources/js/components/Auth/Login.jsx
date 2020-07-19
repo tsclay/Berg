@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 const Login = (props) => {
-  const {token} = props
+  const { token } = props
 
-  
+  useEffect(() => {
+    document.title = 'Berg | Login'
+  })
 
   return (
     <div className="min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg">

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom'
@@ -11,10 +12,10 @@ const Auth = () => {
     <Router>
       <Switch>
         <Route path="/auth/register">
-          <Register token={token} />
+          <Register token={token}   />
         </Route>
         <Route path="/auth/login">
-          <Login token={token} />
+          <Login token={token}   />
         </Route>
       </Switch>
     </Router>
@@ -23,6 +24,6 @@ const Auth = () => {
 
 export default Auth
 
-if (document.title === 'Login' || document.title === 'Register') {
+if (document.title === 'Berg | Login' || document.title === 'Berg | Register') {
   ReactDOM.render(<Auth />, document.getElementById('user-auth'))
 }
