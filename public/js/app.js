@@ -95841,6 +95841,7 @@ var Calculator = function Calculator() {
       set = _useState4[0],
       setSet = _useState4[1];
 
+  var regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi;
   var token = document.querySelector('meta[name="csrf-token"]').content;
 
   var changeText = function changeText(e) {
@@ -95867,21 +95868,42 @@ var Calculator = function Calculator() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              _context.prev = 0;
+
+              if (!regex.test(e.target.value)) {
+                _context.next = 8;
+                break;
+              }
+
+              _context.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/save/set/4', {
                 set: e.target.value
               });
 
-            case 2:
+            case 4:
               response = _context.sent;
               console.log(response);
+              _context.next = 9;
+              break;
 
-            case 4:
+            case 8:
+              throw new Error('Make sure your set does not contain duplicates.');
+
+            case 9:
+              _context.next = 14;
+              break;
+
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](0);
+              console.error(_context.t0);
+
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 11]]);
     }));
 
     return function saveSet(_x) {
@@ -95891,7 +95913,7 @@ var Calculator = function Calculator() {
 
   var changeSet = function changeSet(e) {
     e.preventDefault();
-    setSet(input);
+    if (regex.test(input)) setSet(input);else console.error('ouch');
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {

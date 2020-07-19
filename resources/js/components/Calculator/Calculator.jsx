@@ -9,6 +9,8 @@ const Calculator = () => {
   const [input, setInput] = useState([])
   const [set, setSet] = useState([])
 
+  const regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi
+
   const token = document.querySelector('meta[name="csrf-token"]').content
 
   const changeText = e => {
@@ -28,13 +30,29 @@ const Calculator = () => {
   }
 
   const saveSet = async e => {
-    const response = await axios.post('/save/set/4', { set: e.target.value })
-    console.log(response)
+    // const data = e.target.value
+    //   .split('')
+    //   .filter(n => n !== ',')
+    //   .join('')
+
+    try {
+      if (regex.test(e.target.value)) {
+        const response = await axios.post('/save/set/4', {
+          set: e.target.value
+        })
+        console.log(response)
+      } else {
+        throw new Error('Make sure your set does not contain duplicates.')
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const changeSet = e => {
     e.preventDefault()
-    setSet(input)
+    if (regex.test(input)) setSet(input)
+    else console.error('ouch')
   }
 
   return (
