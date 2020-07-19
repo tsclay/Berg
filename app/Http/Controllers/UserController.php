@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\User;
 
 class UserController extends Controller
 {
@@ -18,13 +19,21 @@ class UserController extends Controller
     $password = $request->password;
     // var_dump($username, $email, $first_name, $last_name, $password);
 
-    DB::table('users')->insert([
+    User::insert([
       'first_name' => $first_name,
       'last_name' => $last_name,
       'username' => $username,
       'email' => $email,
       'password' => $password
     ]);
+
+    // DB::table('users')->insert([
+    //   'first_name' => $first_name,
+    //   'last_name' => $last_name,
+    //   'username' => $username,
+    //   'email' => $email,
+    //   'password' => $password
+    // ]);
 
     Schema::create(($username . '_data'), function (Blueprint $table) {
       $table->id();
@@ -40,7 +49,8 @@ class UserController extends Controller
     $email = $request->email;
     $password = $request->password;
 
-    $user = DB::table('users')->where('email', $email)->first();
+    // $user = DB::table('users')->where('email', $email)->first();
+    $user = User::where('email', $email)->first();
 
     if ($user) {
       if ($user->password === $password) {
@@ -58,7 +68,8 @@ class UserController extends Controller
     $saved_set = $request->set;
     $user_id = $request->user_id;
 
-    $user = DB::table('users')->where('id', $user_id)->first()->username;
+    // $user = DB::table('users')->where('id', $user_id)->first()->username;
+    $user = User::where('id', $user_id)->firstOrFail()->username;
 
     DB::table($user . '_data')->insert([
       'user_id' => $user_id,
