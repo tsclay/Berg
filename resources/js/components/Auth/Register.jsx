@@ -1,12 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 const Register = (props) => {
-  const { selectForm, token } = props
-
-  const handleForm = () => {
-    selectForm()
-  }
+  const { token } = props
 
   return (
     <div className="min-h-1/2 container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg">
@@ -67,8 +64,8 @@ const Register = (props) => {
           </fieldset>
           <div className="flex flex-row justify-between">
             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Signup</button>
-            <button className="self-center inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" type="submit" onClick={handleForm}>
-                      Have an account already?
+            <button className="self-center inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" type="button">
+              <Link to="/auth/login">Have an account already?</Link>    
             </button>
           </div>
                    

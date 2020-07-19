@@ -14,7 +14,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/auth', function () {
+// For React Router, both register and login routes go to the same page
+Route::get('/auth/register', function () {
+  return view('auth');
+});
+
+Route::get('/auth/login', function () {
   return view('auth');
 });
 
