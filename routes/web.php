@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -32,3 +33,5 @@ Route::post('/auth/find', 'UserController@find');
 
 // Handle the new user; 
 Route::post('/auth/create', 'UserController@create');
+
+Route::post('/save/set/{user_id}', 'UserController@save');

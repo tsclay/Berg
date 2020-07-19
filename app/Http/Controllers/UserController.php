@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class UserController extends Controller
 {
@@ -24,6 +26,12 @@ class UserController extends Controller
       'password' => $password
     ]);
 
+    Schema::create(($username . '_data'), function (Blueprint $table) {
+      $table->id();
+      $table->integer('user_id');
+      $table->string('saved_set');
+    });
+
     return redirect('/calculator');
   }
 
@@ -43,5 +51,20 @@ class UserController extends Controller
         return redirect('/auth');
       }
     };
+  }
+
+  public function save(Request $request)
+  {
+    $saved_set = $request->set;
+    $user_id = $request->user_id;
+
+    $user = DB::table('users')->where('id', $user_id)->first()->username;
+
+    DB::table($user . '_data')->insert([
+      'user_id' => $user_id,
+      'saved_set' => $saved_set
+    ]);
+
+    dd($saved_set, $user_id, $user);
   }
 }

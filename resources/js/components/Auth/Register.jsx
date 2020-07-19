@@ -14,7 +14,7 @@ const Register = (props) => {
       <div className="px-6 py-4 flex flex-col justify-between" id="form-fields">
         <div className="font-bold text-xl mb-2 text-center">Signup</div>
         <div>
-          <form className="mx-auto" method="POST" action="/user/create">
+          <form className="mx-auto" method="POST" action="/auth/create">
             <input type="hidden" name="_token" value={token} />
             <fieldset className="mb-3">
               <legend className="ml-3 mb-3">About You</legend>
