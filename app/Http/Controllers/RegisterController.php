@@ -24,7 +24,7 @@ class RegisterController extends Controller
 
     // dd($username, $email, $first_name, $last_name, $password);
 
-    User::insert([
+    $user = User::create([
       'first_name' => $first_name,
       'last_name' => $last_name,
       'username' => $username,
@@ -45,6 +45,8 @@ class RegisterController extends Controller
       $table->integer('user_id');
       $table->string('saved_set');
     });
+
+    auth()->login($user);
 
     return redirect('/home');
   }

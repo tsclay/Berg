@@ -48,6 +48,6 @@ class LoginController extends Controller
       'saved_set' => $saved_set
     ]);
 
-    dd($saved_set, $user_id, $user);
+    return response()->json(['message' => 'Set has been saved!', "status" => 200], 200);
   }
 }
