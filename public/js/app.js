@@ -96119,7 +96119,8 @@ var MusicStaff = function MusicStaff(props) {
 
   var drawNotes = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(context, stave) {
-      var pitches, notes, voice;
+      var pitches, notes, voice, domNotes, _loop, i;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -96140,7 +96141,6 @@ var MusicStaff = function MusicStaff(props) {
 
             case 3:
               notes = _context.sent;
-              console.log(notes, notes.length);
               voice = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Voice({
                 num_beats: notes.length,
                 beat_value: 8
@@ -96149,9 +96149,39 @@ var MusicStaff = function MusicStaff(props) {
               //   .format([voice], 400)
 
               new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Formatter().joinVoices([voice]).format([voice], 500);
-              voice.draw(context, stave); // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
+              voice.draw(context, stave);
+              domNotes = document.getElementsByClassName('vf-stavenote');
 
-            case 8:
+              _loop = function _loop(i) {
+                domNotes[i].addEventListener('click', function () {
+                  MIDI.loadPlugin({
+                    soundfontUrl: '/js/MIDI.js/examples/soundfont/',
+                    instrument: 'acoustic_grand_piano',
+                    onprogress: function onprogress(state, progress) {
+                      console.log(state, progress);
+                    },
+                    onsuccess: function onsuccess() {
+                      var delay = 0; // play one note every quarter second
+
+                      var note = set[i] + 60; // the MIDI note
+
+                      var velocity = 127; // how hard the note hits
+                      // play the note
+
+                      MIDI.setVolume(0, 127);
+                      MIDI.noteOn(0, note, velocity, delay);
+                      MIDI.noteOff(0, note, delay + 0.75);
+                    }
+                  });
+                });
+              };
+
+              for (i = 0; i < domNotes.length; i++) {
+                _loop(i);
+              } // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
+
+
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -96165,9 +96195,6 @@ var MusicStaff = function MusicStaff(props) {
   }();
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    // const div = document.createElement('div')
-    // div.setAttribute('id', 'svg-container')
-    // document.getElementById('music-content').appendChild(div)
     var div = document.getElementById('music-content');
     var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Renderer.Backends.SVG); // Size our SVG:
 
@@ -96180,7 +96207,15 @@ var MusicStaff = function MusicStaff(props) {
     stave.addClef('treble'); // Connect it to the rendering context and draw!
 
     stave.setContext(context).draw();
-    if (set.length > 0) drawNotes(context, stave);
+
+    if (set.length > 0) {
+      drawNotes(context, stave); // console.log(domNotes[0].length)
+      // for (let i = 0; i < domNotes.length; i++) {
+      //   // note.addEventListener('click', handleNoteClick)
+      //   console.log('inside the for of loop')
+      // }
+    }
+
     return function () {
       div.innerHTML = '';
     };
