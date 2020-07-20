@@ -6,12 +6,13 @@ import CalculatorDisplay from './CalculatorDisplay'
 import MusicStaff from './MusicStaff'
 
 const Calculator = () => {
-  const [input, setInput] = useState({raw: '', formatted: []})
+  const [input, setInput] = useState({ raw: '', formatted: [] })
   const [set, setSet] = useState([])
 
   const regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi
 
   const token = document.querySelector('meta[name="csrf-token"]').content
+  const userID = document.querySelector('meta[name=user-id').content
 
   const changeText = e => {
     let output = []
@@ -27,19 +28,19 @@ const Calculator = () => {
       input.raw = e.target.value
       setInput(input)
     } else if (output.length === 0) {
-      setInput({raw: '', formatted: []})
+      setInput({ raw: '', formatted: [] })
     }
   }
 
   const saveSet = async e => {
-    // const data = e.target.value
-    //   .split('')
-    //   .filter(n => n !== ',')
-    //   .join('')
-
+    const data = e.target.value
+      .split('')
+      .filter(n => n !== ',')
+      .join('')
+    console.log(data)
     try {
-      if (regex.test(e.target.value)) {
-        const response = await axios.post('/save/set/4', {
+      if (regex.test(data)) {
+        const response = await axios.post(`/save/set/${userID}`, {
           set: e.target.value
         })
         console.log(response)
@@ -53,7 +54,7 @@ const Calculator = () => {
 
   const changeSet = e => {
     e.preventDefault()
-    const {raw, formatted} = input
+    const { raw, formatted } = input
     console.log('this is the input string', raw)
     if (raw.length === 0) setSet([])
     else if (regex.test(raw)) setSet(formatted)

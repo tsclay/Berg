@@ -25,9 +25,12 @@ Route::get('/login', 'LoginController@index')->name('login');
 Route::get('/home', 'AppController@index')->name('home');
 
 // Handle login
-Route::post('/login', 'LoginController@find')->name('login');
+Route::post('/login', 'SessionController@store')->name('login');
 
 // Create new user; 
 Route::post('/register', 'RegisterController@store')->name('register');
 
 Route::post('/save/set/{user_id}', 'AppController@save');
+
+// Handle logout
+Route::get('/logout', 'SessionController@destroy')->name('logout');

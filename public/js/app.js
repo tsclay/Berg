@@ -95886,6 +95886,7 @@ var Calculator = function Calculator() {
 
   var regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi;
   var token = document.querySelector('meta[name="csrf-token"]').content;
+  var userID = document.querySelector('meta[name=user-id').content;
 
   var changeText = function changeText(e) {
     var output = [];
@@ -95911,47 +95912,51 @@ var Calculator = function Calculator() {
 
   var saveSet = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-      var response;
+      var data, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
+              data = e.target.value.split('').filter(function (n) {
+                return n !== ',';
+              }).join('');
+              console.log(data);
+              _context.prev = 2;
 
-              if (!regex.test(e.target.value)) {
-                _context.next = 8;
+              if (!regex.test(data)) {
+                _context.next = 10;
                 break;
               }
 
-              _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/save/set/4', {
+              _context.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/save/set/".concat(userID), {
                 set: e.target.value
               });
 
-            case 4:
+            case 6:
               response = _context.sent;
               console.log(response);
-              _context.next = 9;
+              _context.next = 11;
               break;
 
-            case 8:
+            case 10:
               throw new Error('Make sure your set does not contain duplicates.');
 
-            case 9:
-              _context.next = 14;
+            case 11:
+              _context.next = 16;
               break;
 
-            case 11:
-              _context.prev = 11;
-              _context.t0 = _context["catch"](0);
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](2);
               console.error(_context.t0);
 
-            case 14:
+            case 16:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 11]]);
+      }, _callee, null, [[2, 13]]);
     }));
 
     return function saveSet(_x) {
