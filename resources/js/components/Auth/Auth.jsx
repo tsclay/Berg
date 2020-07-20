@@ -11,10 +11,10 @@ const Auth = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/auth/register">
+        <Route path="/register">
           <Register token={token}   />
         </Route>
-        <Route path="/auth/login">
+        <Route path="/login">
           <Login token={token}   />
         </Route>
       </Switch>

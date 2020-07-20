@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -16,22 +16,16 @@ use Illuminate\Http\Request;
 */
 
 // For React Router, both register and login routes go to the same page
-Route::get('/auth/register', function () {
-  return view('auth');
-});
+Route::get('/register', 'RegisterController@index')->name('register');
 
-Route::get('/auth/login', function () {
-  return view('auth');
-});
+Route::get('/login', 'LoginController@index')->name('login');
 
-Route::get('/calculator', function () {
-  return view('calculator');
-});
+Route::get('/home', 'AppController@index')->name('home');
 
 // Handle login
-Route::post('/auth/find', 'UserController@find');
+Route::post('/login', 'LoginController@find')->name('login');
 
 // Handle the new user; 
-Route::post('/auth/create', 'UserController@create');
+Route::post('/register', 'RegisterController@create')->name('register');
 
-Route::post('/save/set/{user_id}', 'UserController@save');
+Route::post('/save/set/{user_id}', 'AppController@save');

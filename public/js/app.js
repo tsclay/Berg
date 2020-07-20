@@ -95570,11 +95570,11 @@ __webpack_require__.r(__webpack_exports__);
 var Auth = function Auth() {
   var token = document.querySelector('meta[name="csrf-token"]').content;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/auth/register"
+    path: "/register"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_4__["default"], {
     token: token
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/auth/login"
+    path: "/login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_3__["default"], {
     token: token
   }))));
@@ -95619,7 +95619,7 @@ var Login = function Login(props) {
   }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "mx-auto",
     method: "POST",
-    action: "/auth/find"
+    action: "/login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "hidden",
     name: "_token",
@@ -95657,7 +95657,7 @@ var Login = function Login(props) {
     className: "self-center inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800",
     type: "button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/auth/register"
+    to: "/register"
   }, "Need an account?")))))));
 };
 
@@ -95698,7 +95698,7 @@ var Register = function Register(props) {
   }, "Signup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "mx-auto",
     method: "POST",
-    action: "/auth/create"
+    action: "/register"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "hidden",
     name: "_token",
@@ -95768,7 +95768,7 @@ var Register = function Register(props) {
     className: "self-center inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800",
     type: "button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/auth/login"
+    to: "/login"
   }, "Have an account already?")))))));
 };
 
