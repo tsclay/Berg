@@ -95912,7 +95912,7 @@ var Calculator = function Calculator() {
 
   var saveSet = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-      var data, response;
+      var data, raw, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -95920,43 +95920,44 @@ var Calculator = function Calculator() {
               data = e.target.value.split('').filter(function (n) {
                 return n !== ',';
               }).join('');
-              console.log(data);
-              _context.prev = 2;
+              raw = input.raw;
+              console.log("the data is ".concat(data, " and the raw input is ").concat(input.raw));
+              _context.prev = 3;
 
-              if (!regex.test(data)) {
-                _context.next = 10;
+              if (!regex.test(raw)) {
+                _context.next = 11;
                 break;
               }
 
-              _context.next = 6;
+              _context.next = 7;
               return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/save/set/".concat(userID), {
                 set: e.target.value
               });
 
-            case 6:
+            case 7:
               response = _context.sent;
               console.log(response);
-              _context.next = 11;
+              _context.next = 12;
               break;
-
-            case 10:
-              throw new Error('Make sure your set does not contain duplicates.');
 
             case 11:
-              _context.next = 16;
+              throw new Error('Make sure your set does not contain duplicates.');
+
+            case 12:
+              _context.next = 17;
               break;
 
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](2);
+            case 14:
+              _context.prev = 14;
+              _context.t0 = _context["catch"](3);
               console.error(_context.t0);
 
-            case 16:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 13]]);
+      }, _callee, null, [[3, 14]]);
     }));
 
     return function saveSet(_x) {
