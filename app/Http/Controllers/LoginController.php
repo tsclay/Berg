@@ -20,16 +20,19 @@ class LoginController extends Controller
 
     // $user = DB::table('users')->where('email', $email)->first();
     $user = User::where('email', $email)->first();
+    // dd($user);
 
     if ($user) {
       if ($user->password === $password) {
         // dd('They match!');
-        return redirect('/calculator');
+        return redirect('/home');
       } else {
         // dd('They don\'t match!');
-        return redirect('/auth');
+        return redirect('/login');
       }
     };
+
+    return response()->json(['message' => 'Invalid credentials', "status" => 401], 401);
   }
 
   public function save(Request $request)

@@ -14,14 +14,15 @@ class RegisterController extends Controller
     return view('auth');
   }
 
-  public function create(Request $request)
+  public function store(Request $request)
   {
     $username = $request->username;
     $email = $request->email;
     $first_name = $request->firstName;
     $last_name = $request->lastName;
     $password = $request->password;
-    // var_dump($username, $email, $first_name, $last_name, $password);
+
+    // dd($username, $email, $first_name, $last_name, $password);
 
     User::insert([
       'first_name' => $first_name,

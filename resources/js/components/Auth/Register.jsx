@@ -1,13 +1,34 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+// import axios from 'axios'
 
 const Register = (props) => {
   const { token } = props
+  // const [data, setData] = useState({
+  //   username: '',
+  //   email: '',
+  //   firstName: '',
+  //   lastName: '',
+  //   password: '',
+  //   _token: token
+  // })
 
   useEffect(() => {
     document.title = 'Berg | Register'
   })
+
+  // const changeCredentials = (e) => {
+  //   const dataPiece = e.target.name
+  //   data[dataPiece] = e.target.value
+  //   setData(data)
+  // }
+
+  // const createNewUser = async (e) => {
+  //   // e.preventDefault()
+  //   const response = await axios.post('/register', data)
+  //   console.log(response)
+  // }
 
   return (
     <div className="container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg">
@@ -25,6 +46,7 @@ const Register = (props) => {
                     type="text"
                     id="first-name"
                     name="firstName"
+                 
                     placeholder="First name"
                   />
 
@@ -35,6 +57,7 @@ const Register = (props) => {
                     type="text"
                     id="last-name"
                     name="lastName"
+                  
                     placeholder="Last name"
                   />
                 </div>
@@ -49,6 +72,7 @@ const Register = (props) => {
                   type="username"
                   id="username"
                   name="username"
+                 
                   placeholder="AwesomeDude01"
                 />
               </div>
@@ -58,6 +82,7 @@ const Register = (props) => {
                   type="email"
                   id="email"
                   name="email"
+                
                   placeholder="someone@example.com"
                 />
               </div>
@@ -67,6 +92,7 @@ const Register = (props) => {
                   type="password"
                   id="password"
                   name="password"
+                 
                   placeholder="Pick a good one!"
                 />
               </div>
