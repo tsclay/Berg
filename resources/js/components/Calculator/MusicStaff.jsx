@@ -82,11 +82,6 @@ const MusicStaff = props => {
 
     if (set.length > 0) {
       drawNotes(context, stave)
-      // console.log(domNotes[0].length)
-      // for (let i = 0; i < domNotes.length; i++) {
-      //   // note.addEventListener('click', handleNoteClick)
-      //   console.log('inside the for of loop')
-      // }
     }
 
     return () => {
