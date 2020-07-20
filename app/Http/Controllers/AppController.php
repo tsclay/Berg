@@ -10,7 +10,11 @@ class AppController extends Controller
 {
   public function index(Request $request)
   {
-    return view('calculator');
+    if (auth()->user()) {
+      return view('calculator');
+    } else {
+      return redirect('/login');
+    }
   }
 
   public function save(Request $request)
