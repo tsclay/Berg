@@ -95602,13 +95602,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* eslint-disable prettier/prettier */
 
-
+ // import axios from 'axios'
 
 var Login = function Login(props) {
-  var token = props.token;
+  var token = props.token; // const [data, setData] = useState({email: '', password: ''})
+  // const [status, setStatus] = useState(0)
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.title = 'Berg | Login';
-  });
+  }); // const changePassword = (e) => {
+  //   const password = e.target.value
+  //   data.password = password
+  //   setData(data)
+  // }
+  // const changeEmail = (e) => {
+  //   const email = e.target.value
+  //   data.email = email
+  //   setData(data)
+  // }
+  // const createUser = async (e) => {
+  //   e.preventDefault()
+  //   try {
+  //     const response = await axios.post('/login', data)
+  //     console.log(response)
+  //   } catch (error) {
+  //     console.log(error)
+  //     setStatus(401)
+  //   }
+  // }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container mx-auto my-auto w-1/2 rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95636,7 +95658,6 @@ var Login = function Login(props) {
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "email",
     id: "email",
-    name: "email",
     placeholder: "someone@example.com"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
@@ -95646,7 +95667,6 @@ var Login = function Login(props) {
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "password",
     id: "password",
-    name: "password",
     placeholder: "Pick a good one!"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-between"
@@ -95681,13 +95701,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* eslint-disable prettier/prettier */
 
-
+ // import axios from 'axios'
 
 var Register = function Register(props) {
-  var token = props.token;
+  var token = props.token; // const [data, setData] = useState({
+  //   username: '',
+  //   email: '',
+  //   firstName: '',
+  //   lastName: '',
+  //   password: '',
+  //   _token: token
+  // })
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.title = 'Berg | Register';
-  });
+  }); // const changeCredentials = (e) => {
+  //   const dataPiece = e.target.name
+  //   data[dataPiece] = e.target.value
+  //   setData(data)
+  // }
+  // const createNewUser = async (e) => {
+  //   // e.preventDefault()
+  //   const response = await axios.post('/register', data)
+  //   console.log(response)
+  // }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95831,7 +95869,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Calculator = function Calculator() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    raw: '',
+    formatted: []
+  }),
       _useState2 = _slicedToArray(_useState, 2),
       input = _useState2[0],
       setInput = _useState2[1];
@@ -95855,9 +95896,14 @@ var Calculator = function Calculator() {
       output = output.filter(function (n) {
         return !isNaN(n);
       });
-      setInput(output);
+      input.formatted = output;
+      input.raw = e.target.value;
+      setInput(input);
     } else if (output.length === 0) {
-      setInput([]);
+      setInput({
+        raw: '',
+        formatted: []
+      });
     }
   };
 
@@ -95913,7 +95959,10 @@ var Calculator = function Calculator() {
 
   var changeSet = function changeSet(e) {
     e.preventDefault();
-    if (regex.test(input)) setSet(input);else console.error('ouch');
+    var raw = input.raw,
+        formatted = input.formatted;
+    console.log('this is the input string', raw);
+    if (raw.length === 0) setSet([]);else if (regex.test(raw)) setSet(formatted);else console.error('ouch');
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {

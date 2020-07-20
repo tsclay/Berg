@@ -18,14 +18,16 @@ use Illuminate\Http\Request;
 // For React Router, both register and login routes go to the same page
 Route::get('/register', 'RegisterController@index')->name('register');
 
+// Get the login page
 Route::get('/login', 'LoginController@index')->name('login');
 
+// Get the home page
 Route::get('/home', 'AppController@index')->name('home');
 
 // Handle login
 Route::post('/login', 'LoginController@find')->name('login');
 
-// Handle the new user; 
-Route::post('/register', 'RegisterController@create')->name('register');
+// Create new user; 
+Route::post('/register', 'RegisterController@store')->name('register');
 
 Route::post('/save/set/{user_id}', 'AppController@save');

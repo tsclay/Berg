@@ -6,7 +6,7 @@ import CalculatorDisplay from './CalculatorDisplay'
 import MusicStaff from './MusicStaff'
 
 const Calculator = () => {
-  const [input, setInput] = useState([])
+  const [input, setInput] = useState({raw: '', formatted: []})
   const [set, setSet] = useState([])
 
   const regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi
@@ -23,9 +23,11 @@ const Calculator = () => {
     })
     if (!isNaN(output[output.length - 1])) {
       output = output.filter(n => !isNaN(n))
-      setInput(output)
+      input.formatted = output
+      input.raw = e.target.value
+      setInput(input)
     } else if (output.length === 0) {
-      setInput([])
+      setInput({raw: '', formatted: []})
     }
   }
 
@@ -51,7 +53,10 @@ const Calculator = () => {
 
   const changeSet = e => {
     e.preventDefault()
-    if (regex.test(input)) setSet(input)
+    const {raw, formatted} = input
+    console.log('this is the input string', raw)
+    if (raw.length === 0) setSet([])
+    else if (regex.test(raw)) setSet(formatted)
     else console.error('ouch')
   }
 
