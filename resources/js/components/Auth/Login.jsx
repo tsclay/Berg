@@ -54,7 +54,7 @@ const Login = (props) => {
                 <input
                   type="email"
                   id="email"
-               
+                  name="email"    
                   placeholder="someone@example.com"
                 />
               </div>
@@ -63,7 +63,7 @@ const Login = (props) => {
                 <input
                   type="password"
                   id="password"
-               
+                  name="password"
                   placeholder="Pick a good one!"
                 />
               </div>

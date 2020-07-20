@@ -95658,6 +95658,7 @@ var Login = function Login(props) {
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "email",
     id: "email",
+    name: "email",
     placeholder: "someone@example.com"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
@@ -95667,6 +95668,7 @@ var Login = function Login(props) {
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "password",
     id: "password",
+    name: "password",
     placeholder: "Pick a good one!"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-between"
