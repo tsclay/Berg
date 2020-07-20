@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -23,7 +24,7 @@ class LoginController extends Controller
     // dd($user);
 
     if ($user) {
-      if ($user->password === $password) {
+      if (Hash::check($password, $user->password)) {
         // dd('They match!');
         return redirect('/home');
       } else {
