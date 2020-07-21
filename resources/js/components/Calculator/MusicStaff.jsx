@@ -22,7 +22,6 @@ const MusicStaff = props => {
             duration: '8'
           })
     })
-    console.log(notes, notes.length)
     const voice = new Vex.Flow.Voice({
       num_beats: notes.length,
       beat_value: 8
@@ -36,14 +35,33 @@ const MusicStaff = props => {
 
     voice.draw(context, stave)
 
+    const domNotes = document.getElementsByClassName('vf-stavenote')
+
+    for (let i = 0; i < domNotes.length; i++) {
+      domNotes[i].addEventListener('click', () => {
+        MIDI.loadPlugin({
+          soundfontUrl: '/js/MIDI.js/examples/soundfont/',
+          instrument: 'acoustic_grand_piano',
+          onprogress(state, progress) {
+            console.log(state, progress)
+          },
+          onsuccess() {
+            const delay = 0 // play one note every quarter second
+            const note = set[i] + 60 // the MIDI note
+            const velocity = 127 // how hard the note hits
+            // play the note
+            MIDI.setVolume(0, 127)
+            MIDI.noteOn(0, note, velocity, delay)
+            MIDI.noteOff(0, note, delay + 0.75)
+          }
+        })
+      })
+    }
+
     // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
   }
 
   useEffect(() => {
-    // const div = document.createElement('div')
-    // div.setAttribute('id', 'svg-container')
-    // document.getElementById('music-content').appendChild(div)
-
     const div = document.getElementById('music-content')
     const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
 
@@ -62,7 +80,9 @@ const MusicStaff = props => {
     // Connect it to the rendering context and draw!
     stave.setContext(context).draw()
 
-    if (set.length > 0) drawNotes(context, stave)
+    if (set.length > 0) {
+      drawNotes(context, stave)
+    }
 
     return () => {
       div.innerHTML = ''

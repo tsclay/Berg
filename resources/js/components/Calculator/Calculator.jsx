@@ -37,9 +37,10 @@ const Calculator = () => {
       .split('')
       .filter(n => n !== ',')
       .join('')
-    console.log(data)
+    const { raw } = input
+    console.log(`the data is ${data} and the raw input is ${input.raw}`)
     try {
-      if (regex.test(data)) {
+      if (regex.test(raw)) {
         const response = await axios.post(`/save/set/${userID}`, {
           set: e.target.value
         })
