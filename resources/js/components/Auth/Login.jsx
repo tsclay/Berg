@@ -8,7 +8,7 @@ const Login = (props) => {
 
   let loginError = ''
 
-  const inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  const inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
 
   const inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
   
@@ -22,7 +22,7 @@ const Login = (props) => {
 
   return (
     <div className="container mx-auto mt-1/5 w-1/2 rounded overflow-hidden shadow-lg">
-      <div className="px-6 py-4 flex flex-col justify-between" id="form-fields">
+      <div className="px-6 py-4" id="form-fields">
         <div className="font-bold text-xl mb-2 text-center">Login</div>
         <div>
           {loginError ? (
@@ -34,8 +34,8 @@ const Login = (props) => {
             <input type="hidden" name="_token" value={token} />
             <fieldset className="mb-3">
               <legend className="ml-3 mb-3">Account</legend>
-              <div className="ml-3 mb-3">
-                <label className="block" htmlFor="email">Email</label>
+              <div className="ml-3 mb-3 mr-3">
+                <label className="block mb-2" htmlFor="email">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -45,8 +45,8 @@ const Login = (props) => {
                     : inputClass}
                 />
               </div>
-              <div className="ml-3 mb-3">
-                <label className="block" htmlFor="password">Password</label>
+              <div className="ml-3 mb-3 mr-3">
+                <label className="block mb-2" htmlFor="password">Password</label>
                 <input
                   type="password"
                   id="password"

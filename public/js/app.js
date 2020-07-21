@@ -95702,7 +95702,7 @@ __webpack_require__.r(__webpack_exports__);
 var Login = function Login(props) {
   var token = props.token;
   var loginError = '';
-  var inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+  var inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline";
   var inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline";
 
   if (document.getElementById('user-auth').getAttribute('login')) {
@@ -95715,7 +95715,7 @@ var Login = function Login(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container mx-auto mt-1/5 w-1/2 rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "px-6 py-4 flex flex-col justify-between",
+    className: "px-6 py-4",
     id: "form-fields"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-bold text-xl mb-2 text-center"
@@ -95734,9 +95734,9 @@ var Login = function Login(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
     className: "ml-3 mb-3"
   }, "Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-3 mb-3"
+    className: "ml-3 mb-3 mr-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "email"
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "email",
@@ -95745,9 +95745,9 @@ var Login = function Login(props) {
     placeholder: "someone@example.com",
     className: loginError ? inputHasError : inputClass
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-3 mb-3"
+    className: "ml-3 mb-3 mr-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "password"
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "password",
@@ -95798,6 +95798,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 /* eslint-disable prettier/prettier */
 
  // import axios from 'axios'
@@ -95806,7 +95808,7 @@ var Register = function Register(props) {
   var token = props.token;
   var allErrors = [];
   var attributes = ['firstName', 'lastName', 'email', 'username', 'password'];
-  var inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+  var inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline";
   var inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline";
 
   for (var i = 0; i < attributes.length; i++) {
@@ -95844,13 +95846,15 @@ var Register = function Register(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
     className: "ml-3 mb-3"
   }, "About You"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-3 mb-3 flex flex-row justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, allErrors.map(function (error) {
+    className: "ml-3 mb-3 mr-3 flex flex-row justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mr-1"
+  }, allErrors.map(function (error) {
     return error.name === 'firstName' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "text-red-500 text-xs italic"
     }, error.message) : null;
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "first-name"
   }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
@@ -95860,12 +95864,14 @@ var Register = function Register(props) {
     id: "first-name",
     name: "firstName",
     placeholder: "First name"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, allErrors.map(function (error) {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ml-1"
+  }, allErrors.map(function (error) {
     return error.name === 'lastName' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "text-red-500 text-xs italic"
     }, error.message) : null;
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "last-name"
   }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
@@ -95880,13 +95886,13 @@ var Register = function Register(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("legend", {
     className: "ml-3 mb-3"
   }, "Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-3 mb-3"
+    className: "ml-3 mb-3 mr-3"
   }, allErrors.map(function (error) {
     return error.name === 'username' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "text-red-500 text-xs italic"
     }, error.message) : null;
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "username"
   }, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
@@ -95897,13 +95903,13 @@ var Register = function Register(props) {
     name: "username",
     placeholder: "AwesomePerson01"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-3 mb-3"
+    className: "ml-3 mb-3 mr-3"
   }, allErrors.map(function (error) {
     return error.name === 'email' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "text-red-500 text-xs italic"
     }, error.message) : null;
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "email"
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
@@ -95914,13 +95920,13 @@ var Register = function Register(props) {
     name: "email",
     placeholder: "someone@example.com"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-3 mb-3"
+    className: "ml-3 mb-3 mr-3"
   }, allErrors.map(function (error) {
     return error.name === 'password' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "text-red-500 text-xs italic"
     }, error.message) : null;
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "block",
+    className: "block mb-2",
     htmlFor: "password"
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
