@@ -31,6 +31,11 @@ fieldset {
     grid-template-rows: 1fr;
 }
 
+#logo {
+    width: 100px;
+    height: 100%;
+}
+
 @media (max-width: 1150px) {
     #calculator {
         > div {
