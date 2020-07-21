@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 Route::get('/register', 'RegisterController@index')->name('register');
 
 // Get the login page
-Route::get('/login', 'LoginController@index')->name('login');
+Route::get('/login', 'SessionController@index')->name('login');
 
 // Get the home page
 Route::get('/home', 'AppController@index')->name('home');

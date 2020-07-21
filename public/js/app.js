@@ -95700,32 +95700,16 @@ __webpack_require__.r(__webpack_exports__);
  // import axios from 'axios'
 
 var Login = function Login(props) {
-  var token = props.token; // const [data, setData] = useState({email: '', password: ''})
-  // const [status, setStatus] = useState(0)
+  var token = props.token;
+  var loginError = '';
+
+  if (document.getElementById('user-auth').getAttribute('login')) {
+    loginError = document.getElementById('user-auth').getAttribute('login');
+  }
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.title = 'Berg | Login';
-  }); // const changePassword = (e) => {
-  //   const password = e.target.value
-  //   data.password = password
-  //   setData(data)
-  // }
-  // const changeEmail = (e) => {
-  //   const email = e.target.value
-  //   data.email = email
-  //   setData(data)
-  // }
-  // const createUser = async (e) => {
-  //   e.preventDefault()
-  //   try {
-  //     const response = await axios.post('/login', data)
-  //     console.log(response)
-  //   } catch (error) {
-  //     console.log(error)
-  //     setStatus(401)
-  //   }
-  // }
-
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container mx-auto my-auto w-1/2 rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95733,7 +95717,11 @@ var Login = function Login(props) {
     id: "form-fields"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-bold text-xl mb-2 text-center"
-  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, loginError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    style: {
+      "color": "red"
+    }
+  }, loginError)) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "mx-auto",
     method: "POST",
     action: "/login"
@@ -95754,7 +95742,10 @@ var Login = function Login(props) {
     type: "email",
     id: "email",
     name: "email",
-    placeholder: "someone@example.com"
+    placeholder: "someone@example.com",
+    style: loginError ? {
+      "border": "2px solid red"
+    } : null
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -95764,7 +95755,10 @@ var Login = function Login(props) {
     type: "password",
     id: "password",
     name: "password",
-    placeholder: "Pick a good one!"
+    placeholder: "Pick a good one!",
+    style: loginError ? {
+      "border": "2px solid red"
+    } : null
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -95796,33 +95790,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /* eslint-disable prettier/prettier */
 
  // import axios from 'axios'
 
 var Register = function Register(props) {
-  var token = props.token; // const [data, setData] = useState({
-  //   username: '',
-  //   email: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   password: '',
-  //   _token: token
-  // })
+  var token = props.token;
+  var allErrors = [];
+  var attributes = ['firstName', 'lastName', 'email', 'username', 'password'];
 
+  for (var i = 0; i < attributes.length; i++) {
+    if (document.getElementById('user-auth').getAttribute(attributes[i])) {
+      var message = document.getElementById('user-auth').getAttribute(attributes[i]); // console.log(error1)
+
+      allErrors = [].concat(_toConsumableArray(allErrors), [{
+        name: attributes[i],
+        message: message
+      }]);
+    }
+  }
+
+  if (allErrors.length > 0) console.log('we got errors: ', allErrors);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.title = 'Berg | Register';
-  }); // const changeCredentials = (e) => {
-  //   const dataPiece = e.target.name
-  //   data[dataPiece] = e.target.value
-  //   setData(data)
-  // }
-  // const createNewUser = async (e) => {
-  //   // e.preventDefault()
-  //   const response = await axios.post('/register', data)
-  //   console.log(response)
-  // }
-
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95844,7 +95847,13 @@ var Register = function Register(props) {
     className: "ml-3 mb-3"
   }, "About You"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3 flex flex-row justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, allErrors.map(function (error) {
+    return error.name === 'firstName' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        "color": "red"
+      }
+    }, error.message) : null;
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block",
     htmlFor: "first-name"
   }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -95852,7 +95861,13 @@ var Register = function Register(props) {
     id: "first-name",
     name: "firstName",
     placeholder: "First name"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, allErrors.map(function (error) {
+    return error.name === 'lastName' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        "color": "red"
+      }
+    }, error.message) : null;
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block",
     htmlFor: "last-name"
   }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -95866,7 +95881,13 @@ var Register = function Register(props) {
     className: "ml-3 mb-3"
   }, "Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }, allErrors.map(function (error) {
+    return error.name === 'username' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        "color": "red"
+      }
+    }, error.message) : null;
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block",
     htmlFor: "username"
   }, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -95876,7 +95897,13 @@ var Register = function Register(props) {
     placeholder: "AwesomeDude01"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }, allErrors.map(function (error) {
+    return error.name === 'email' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        "color": "red"
+      }
+    }, error.message) : null;
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block",
     htmlFor: "email"
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -95886,7 +95913,13 @@ var Register = function Register(props) {
     placeholder: "someone@example.com"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+  }, allErrors.map(function (error) {
+    return error.name === 'password' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: {
+        "color": "red"
+      }
+    }, error.message) : null;
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block",
     htmlFor: "password"
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
