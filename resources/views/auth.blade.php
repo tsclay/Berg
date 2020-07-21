@@ -14,13 +14,8 @@
 </head>
 
 <body>
-  <!-- @if($errors->any())
-  @foreach ($errors as $type => $message)
-  <div>{{$type}} | {{$message}}</div>
-  @endforeach
-  @endif -->
 
-  <div class="h-screen flex flex-col items-center container mx-auto" id="user-auth" @error('login_failed') login="{{$errors->first('login_failed')}}" @endif></div>
+  <div class="h-screen flex flex-col items-center container mx-auto" id="user-auth" @error('login_failed') login="{{$errors->first('login_failed')}}" @endif @error('firstName') firstName="{{$errors->first('firstName')}}" @endif @error('lastName') lastName="{{$errors->first('lastName')}}" @endif @error('email') email="{{$errors->first('email')}}" @endif @error('password') password="{{$errors->first('password')}}" @endif @error('username') username="{{$errors->first('username')}}" @endif></div>
   <script type="text/javascript" src="/js/app.js"></script>
 </body>
 
