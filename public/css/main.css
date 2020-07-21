@@ -17825,6 +17825,10 @@ fieldset {
   min-height: 498px;
 }
 
+.mt-1\/5 {
+  margin-top: 20%;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
