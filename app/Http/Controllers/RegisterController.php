@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -16,6 +17,20 @@ class RegisterController extends Controller
 
   public function store(Request $request)
   {
+
+    $validator = Validator::make($request->all(), [
+      'firstName' => 'required',
+      'lastName' => 'required',
+      'email' => ['required', 'email'],
+      'password' => ['required', 'min:8'],
+      'username' => ['required', 'unique:users']
+    ]);
+
+    if ($validator->fails()) {
+      return redirect('/register')->withErrors($validator)->withInput();
+    };
+
+
     $username = $request->username;
     $email = $request->email;
     $first_name = $request->firstName;

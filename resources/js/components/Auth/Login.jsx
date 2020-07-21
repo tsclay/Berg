@@ -5,46 +5,27 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 const Login = (props) => {
   const { token } = props
-  // const [data, setData] = useState({email: '', password: ''})
-  // const [status, setStatus] = useState(0)
+
+  let loginError = ''
+  
+  if (document.getElementById('user-auth').getAttribute('login')) {
+    loginError = document.getElementById('user-auth').getAttribute('login')
+  }
 
   useEffect(() => {
     document.title = 'Berg | Login'
   })
-
-  // const changePassword = (e) => {
-  //   const password = e.target.value
-  //   data.password = password
-  //   setData(data)
-  // }
-
-  // const changeEmail = (e) => {
-  //   const email = e.target.value
-  //   data.email = email
-  //   setData(data)
-  // }
-
-  // const createUser = async (e) => {
-  //   e.preventDefault()
-  //   try {
-  //     const response = await axios.post('/login', data)
-  //     console.log(response)
-  //   } catch (error) {
-  //     console.log(error)
-  //     setStatus(401)
-  //   }
-  // }
 
   return (
     <div className="container mx-auto my-auto w-1/2 rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4 flex flex-col justify-between" id="form-fields">
         <div className="font-bold text-xl mb-2 text-center">Login</div>
         <div>
-          {/* {status === 401 ? (
+          {loginError ? (
             <div>
-              <h3 style={{"color": "red"}}>Double-check your creditials and try again.</h3>
+              <h3 style={{"color": "red"}}>{loginError}</h3>
             </div>
-          ) : null} */}
+          ) : null}
           <form className="mx-auto" method="POST" action="/login">
             <input type="hidden" name="_token" value={token} />
             <fieldset className="mb-3">
@@ -56,6 +37,7 @@ const Login = (props) => {
                   id="email"
                   name="email"    
                   placeholder="someone@example.com"
+                  style={loginError ? {"border": "2px solid red"} : null}
                 />
               </div>
               <div className="ml-3 mb-3">
@@ -65,6 +47,7 @@ const Login = (props) => {
                   id="password"
                   name="password"
                   placeholder="Pick a good one!"
+                  style={loginError ? {"border": "2px solid red"} : null}
                 />
               </div>
             </fieldset>
