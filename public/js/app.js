@@ -95702,6 +95702,8 @@ __webpack_require__.r(__webpack_exports__);
 var Login = function Login(props) {
   var token = props.token;
   var loginError = '';
+  var inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+  var inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline";
 
   if (document.getElementById('user-auth').getAttribute('login')) {
     loginError = document.getElementById('user-auth').getAttribute('login');
@@ -95741,7 +95743,7 @@ var Login = function Login(props) {
     id: "email",
     name: "email",
     placeholder: "someone@example.com",
-    className: loginError ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    className: loginError ? inputHasError : inputClass
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -95752,7 +95754,7 @@ var Login = function Login(props) {
     id: "password",
     name: "password",
     placeholder: "Pick a good one!",
-    className: loginError ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    className: loginError ? inputHasError : inputClass
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-row justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -95805,6 +95807,7 @@ var Register = function Register(props) {
   var allErrors = [];
   var attributes = ['firstName', 'lastName', 'email', 'username', 'password'];
   var inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+  var inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline";
 
   for (var i = 0; i < attributes.length; i++) {
     if (document.getElementById('user-auth').getAttribute(attributes[i])) {
@@ -95851,7 +95854,7 @@ var Register = function Register(props) {
     htmlFor: "first-name"
   }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
-      return error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : inputClass;
+      return error.name === 'password' ? inputHasError : inputClass;
     }) : inputClass,
     type: "text",
     id: "first-name",
@@ -95866,7 +95869,7 @@ var Register = function Register(props) {
     htmlFor: "last-name"
   }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
-      return error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : inputClass;
+      return error.name === 'password' ? inputHasError : inputClass;
     }) : inputClass,
     type: "text",
     id: "last-name",
@@ -95887,12 +95890,12 @@ var Register = function Register(props) {
     htmlFor: "username"
   }, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
-      return error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : inputClass;
+      return error.name === 'password' ? inputHasError : inputClass;
     }) : inputClass,
     type: "username",
     id: "username",
     name: "username",
-    placeholder: "AwesomeDude01"
+    placeholder: "AwesomePerson01"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-3 mb-3"
   }, allErrors.map(function (error) {
@@ -95904,7 +95907,7 @@ var Register = function Register(props) {
     htmlFor: "email"
   }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
-      return error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : inputClass;
+      return error.name === 'password' ? inputHasError : inputClass;
     }) : inputClass,
     type: "email",
     id: "email",
@@ -95921,7 +95924,7 @@ var Register = function Register(props) {
     htmlFor: "password"
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: allErrors.length > 0 ? allErrors.map(function (error) {
-      return error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" : inputClass;
+      return error.name === 'password' ? inputHasError : inputClass;
     }) : inputClass,
     type: "password",
     id: "password",

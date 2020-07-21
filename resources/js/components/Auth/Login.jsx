@@ -7,6 +7,10 @@ const Login = (props) => {
   const { token } = props
 
   let loginError = ''
+
+  const inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
+  const inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
   
   if (document.getElementById('user-auth').getAttribute('login')) {
     loginError = document.getElementById('user-auth').getAttribute('login')
@@ -37,8 +41,8 @@ const Login = (props) => {
                   id="email"
                   name="email"    
                   placeholder="someone@example.com"
-                  className={loginError ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
-                    : "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"}
+                  className={loginError ? inputHasError
+                    : inputClass}
                 />
               </div>
               <div className="ml-3 mb-3">
@@ -48,8 +52,8 @@ const Login = (props) => {
                   id="password"
                   name="password"
                   placeholder="Pick a good one!"
-                  className={loginError ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
-                    : "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"}
+                  className={loginError ? inputHasError
+                    : inputClass}
                 />
               </div>
             </fieldset>
