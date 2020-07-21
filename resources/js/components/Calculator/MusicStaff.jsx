@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable indent */
 import React, { useEffect } from 'react'
 import Vex from 'vexflow'
@@ -66,13 +67,13 @@ const MusicStaff = props => {
     const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
 
     // Size our SVG:
-    renderer.resize(700, 200)
+    renderer.resize(600, 200)
 
     // And get a drawing context:
     const context = renderer.getContext()
 
     // Create a stave at position 10, 40 of width 400 on the canvas.
-    const stave = new Vex.Flow.Stave(50, 40, 650)
+    const stave = new Vex.Flow.Stave(25, 40, 550)
 
     // Add a clef and time signature.
     stave.addClef('treble')
@@ -90,7 +91,7 @@ const MusicStaff = props => {
   })
 
   return (
-    <div>
+    <div id="staff-container">
       <h3>Staff Container</h3>
       <div id="music-content" />
     </div>

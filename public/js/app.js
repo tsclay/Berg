@@ -96110,9 +96110,11 @@ var Calculator = function Calculator() {
     if (raw.length === 0) setSet([]);else if (regex.test(raw)) setSet(formatted);else console.error('ouch');
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "grid grid-rows-1 grid-cols-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "set-data-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "flex flex-row justify-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
     onSubmit: changeSet
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     onChange: changeText,
@@ -96122,7 +96124,7 @@ var Calculator = function Calculator() {
     value: set,
     onClick: saveSet,
     type: "button"
-  }, "Save this Set"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "Save this Set")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex flex-row justify-even"
   }, set.map(function (num) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -96219,7 +96221,7 @@ var CalculatorDisplay = function CalculatorDisplay(props) {
         className: "w-8"
       }, e);
     }));
-  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Begin typing digits 0-9, t (10), and e (11) to see the details on your set!"));
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Type any combination of digits and letters \u2018t\u2019 and \u2018e\u2019 then press Enter. Note, you can only type one of each character. No duplicates!"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CalculatorDisplay);
@@ -96246,6 +96248,8 @@ __webpack_require__.r(__webpack_exports__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/* eslint-disable no-loop-func */
 
 /* eslint-disable indent */
 
@@ -96336,11 +96340,11 @@ var MusicStaff = function MusicStaff(props) {
     var div = document.getElementById('music-content');
     var renderer = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Renderer(div, vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Renderer.Backends.SVG); // Size our SVG:
 
-    renderer.resize(700, 200); // And get a drawing context:
+    renderer.resize(600, 200); // And get a drawing context:
 
     var context = renderer.getContext(); // Create a stave at position 10, 40 of width 400 on the canvas.
 
-    var stave = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Stave(50, 40, 650); // Add a clef and time signature.
+    var stave = new vexflow__WEBPACK_IMPORTED_MODULE_2__["default"].Flow.Stave(25, 40, 550); // Add a clef and time signature.
 
     stave.addClef('treble'); // Connect it to the rendering context and draw!
 
@@ -96354,7 +96358,9 @@ var MusicStaff = function MusicStaff(props) {
       div.innerHTML = '';
     };
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "staff-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Staff Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "music-content"
   }));
 };

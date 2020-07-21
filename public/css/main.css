@@ -17825,6 +17825,27 @@ fieldset {
   margin-top: 20%;
 }
 
+#calculator > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+@media (max-width: 1150px) {
+  #calculator > div {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  #calculator #staff-container {
+    grid-area: 1/1/1/1;
+  }
+
+  #calculator #set-data-container {
+    grid-area: 2/1/2/1;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

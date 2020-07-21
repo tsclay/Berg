@@ -63,18 +63,21 @@ const Calculator = () => {
   }
 
   return (
-    <div className="grid grid-rows-1 grid-cols-2">
-      <div>
-        <form onSubmit={changeSet}>
-          <input
-            onChange={changeText}
-            type="text"
-            placeholder="type your set here"
-          />
-        </form>
-        <button value={set} onClick={saveSet} type="button">
-          Save this Set
-        </button>
+    <div>
+      <div id="set-data-container">
+        <div className="flex flex-row justify-start">
+          <form onSubmit={changeSet}>
+            <input
+              onChange={changeText}
+              type="text"
+              placeholder="type your set here"
+            />
+          </form>
+          <button value={set} onClick={saveSet} type="button">
+            Save this Set
+          </button>
+        </div>
+
         <div className="flex flex-row justify-even">
           {set.map(num => (
             <div key={num} className="w-8">
