@@ -15,7 +15,7 @@ class SessionController extends Controller
   {
     if (auth()->attempt(request(['email', 'password'])) == false) {
       return back()->withErrors([
-        'message' => 'The email or password is incorrect, please try again'
+        'login_failed' => 'The email or password is incorrect. Please try again.'
       ]);
     }
 

@@ -14,7 +14,13 @@
 </head>
 
 <body>
-  <div class="h-screen flex flex-col items-center container mx-auto" id="user-auth"></div>
+  <!-- @if($errors->any())
+  @foreach ($errors as $type => $message)
+  <div>{{$type}} | {{$message}}</div>
+  @endforeach
+  @endif -->
+
+  <div class="h-screen flex flex-col items-center container mx-auto" id="user-auth" @error('login_failed') login="{{$errors->first('login_failed')}}" @endif></div>
   <script type="text/javascript" src="/js/app.js"></script>
 </body>
 
