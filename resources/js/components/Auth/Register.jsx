@@ -14,6 +14,8 @@ const Register = (props) => {
     'username',
     'password']
 
+  const inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
   for (let i = 0; i < attributes.length; i++) {
     if (document.getElementById('user-auth').getAttribute(attributes[i])) {
       const message  = document.getElementById('user-auth').getAttribute(attributes[i])
@@ -42,10 +44,13 @@ const Register = (props) => {
                 
                 <div>
                   {allErrors.map(error => 
-                    error.name === 'firstName' ? <div style={{"color": "red"}}>{error.message}</div>
+                    error.name === 'firstName' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                       : null)}
                   <label className="block" htmlFor="first-name">First Name</label>
                   <input  
+                    className={(allErrors.length > 0) ? allErrors.map(error => 
+                      error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                        : inputClass) : inputClass}
                     type="text"
                     id="first-name"
                     name="firstName"
@@ -55,10 +60,13 @@ const Register = (props) => {
                 </div>
                 <div>
                   {allErrors.map(error => 
-                    error.name === 'lastName' ? <div style={{"color": "red"}}>{error.message}</div>
+                    error.name === 'lastName' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                       : null)}
                   <label className="block" htmlFor="last-name">Last Name</label>
                   <input  
+                    className={(allErrors.length > 0) ? allErrors.map(error => 
+                      error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                        : inputClass) : inputClass}
                     type="text"
                     id="last-name"
                     name="lastName"
@@ -72,10 +80,13 @@ const Register = (props) => {
               <legend className="ml-3 mb-3">Account</legend>
               <div className="ml-3 mb-3">
                 {allErrors.map(error => 
-                  error.name === 'username' ? <div style={{"color": "red"}}>{error.message}</div>
+                  error.name === 'username' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                     : null)}
                 <label className="block" htmlFor="username">Username</label>
                 <input
+                  className={(allErrors.length > 0) ? allErrors.map(error => 
+                    error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                      : inputClass) : inputClass}
                   type="username"
                   id="username"
                   name="username"
@@ -84,10 +95,13 @@ const Register = (props) => {
               </div>
               <div className="ml-3 mb-3">
                 {allErrors.map(error => 
-                  error.name === 'email' ? <div style={{"color": "red"}}>{error.message}</div>
+                  error.name === 'email' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                     : null)}
                 <label className="block" htmlFor="email">Email</label>
                 <input
+                  className={(allErrors.length > 0) ? allErrors.map(error => 
+                    error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                      : inputClass) : inputClass}
                   type="email"
                   id="email"
                   name="email"
@@ -96,10 +110,14 @@ const Register = (props) => {
               </div>
               <div className="ml-3 mb-3">
                 {allErrors.map(error => 
-                  error.name === 'password' ? <div style={{"color": "red"}}>{error.message}</div>
+                  error.name === 'password' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                     : null)}
                 <label className="block" htmlFor="password">Password</label>
                 <input
+                  className={(allErrors.length > 0) ? allErrors.map(error => 
+                    error.name === 'password' ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                      : inputClass) : inputClass}
+                
                   type="password"
                   id="password"
                   name="password"

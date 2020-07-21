@@ -22,9 +22,9 @@ const Login = (props) => {
         <div className="font-bold text-xl mb-2 text-center">Login</div>
         <div>
           {loginError ? (
-            <div>
-              <h3 style={{"color": "red"}}>{loginError}</h3>
-            </div>
+            <p className="text-red-500 text-xs italic">
+              {loginError}
+            </p>
           ) : null}
           <form className="mx-auto" method="POST" action="/login">
             <input type="hidden" name="_token" value={token} />
@@ -37,7 +37,8 @@ const Login = (props) => {
                   id="email"
                   name="email"    
                   placeholder="someone@example.com"
-                  style={loginError ? {"border": "2px solid red"} : null}
+                  className={loginError ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                    : "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"}
                 />
               </div>
               <div className="ml-3 mb-3">
@@ -47,7 +48,8 @@ const Login = (props) => {
                   id="password"
                   name="password"
                   placeholder="Pick a good one!"
-                  style={loginError ? {"border": "2px solid red"} : null}
+                  className={loginError ? "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                    : "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"}
                 />
               </div>
             </fieldset>
