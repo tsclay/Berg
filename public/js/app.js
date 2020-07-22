@@ -96021,12 +96021,18 @@ var Calculator = function Calculator() {
       set = _useState4[0],
       setSet = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      saveStatus = _useState6[0],
+      setSaveStatus = _useState6[1];
+
   var regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi;
   var token = document.querySelector('meta[name="csrf-token"]').content;
   var userID = document.querySelector('meta[name=user-id').content;
 
   var changeText = function changeText(e) {
     var output = [];
+    console.log(e.target.value);
     var setToArray = e.target.value.split('');
     setToArray.forEach(function (v) {
       if (v.toLowerCase() === 't') output = [].concat(_toConsumableArray(output), [10]);else if (v.toLowerCase() === 'e') output = [].concat(_toConsumableArray(output), [11]);else output = [].concat(_toConsumableArray(output), [parseInt(v)]);
@@ -96054,47 +96060,50 @@ var Calculator = function Calculator() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              data = e.target.value.split('').filter(function (n) {
+              // e.stopPropagation()
+              console.log(e.currentTarget);
+              data = e.currentTarget.value.split('').filter(function (n) {
                 return n !== ',';
               }).join('');
               raw = input.raw;
               console.log("the data is ".concat(data, " and the raw input is ").concat(input.raw));
-              _context.prev = 3;
+              _context.prev = 4;
 
               if (!regex.test(raw)) {
-                _context.next = 11;
+                _context.next = 13;
                 break;
               }
 
-              _context.next = 7;
+              _context.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_3___default.a.post("/save/set/".concat(userID), {
-                set: e.target.value
+                set: raw
               });
 
-            case 7:
+            case 8:
               response = _context.sent;
+              setSaveStatus(true);
               console.log(response);
-              _context.next = 12;
+              _context.next = 14;
               break;
 
-            case 11:
+            case 13:
               throw new Error('Make sure your set does not contain duplicates.');
 
-            case 12:
-              _context.next = 17;
+            case 14:
+              _context.next = 19;
               break;
 
-            case 14:
-              _context.prev = 14;
-              _context.t0 = _context["catch"](3);
+            case 16:
+              _context.prev = 16;
+              _context.t0 = _context["catch"](4);
               console.error(_context.t0);
 
-            case 17:
+            case 19:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[3, 14]]);
+      }, _callee, null, [[4, 16]]);
     }));
 
     return function saveSet(_x) {
@@ -96107,24 +96116,38 @@ var Calculator = function Calculator() {
     var raw = input.raw,
         formatted = input.formatted;
     console.log('this is the input string', raw);
-    if (raw.length === 0) setSet([]);else if (regex.test(raw)) setSet(formatted);else console.error('ouch');
+
+    if (raw.length === 0) {
+      setSet([]);
+      setSaveStatus(false);
+    } else if (regex.test(raw)) {
+      setSet(formatted);
+      setSaveStatus(false);
+    } else console.error('ouch');
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "set-data-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "flex flex-row justify-start"
+    className: "flex flex-row justify-start items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
     onSubmit: changeSet
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
     onChange: changeText,
     type: "text",
     placeholder: "type your set here"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    id: "save-button",
     value: set,
-    onClick: saveSet,
+    className: "bg-white hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow",
+    onClick: saveStatus ? null : saveSet,
     type: "button"
-  }, "Save this Set")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, saveStatus ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-check"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "far fa-save"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex flex-row justify-even"
   }, set.map(function (num) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {

@@ -8,6 +8,7 @@ import MusicStaff from './MusicStaff'
 const Calculator = () => {
   const [input, setInput] = useState({ raw: '', formatted: [] })
   const [set, setSet] = useState([])
+  const [saveStatus, setSaveStatus] = useState(false)
 
   const regex = /^(?=[\s\S])(?:([0-9te])(?!.*\1))*$/gi
 
@@ -16,6 +17,7 @@ const Calculator = () => {
 
   const changeText = e => {
     let output = []
+    console.log(e.target.value)
     const setToArray = e.target.value.split('')
     setToArray.forEach(v => {
       if (v.toLowerCase() === 't') output = [...output, 10]
@@ -33,7 +35,9 @@ const Calculator = () => {
   }
 
   const saveSet = async e => {
-    const data = e.target.value
+    // e.stopPropagation()
+    console.log(e.currentTarget)
+    const data = e.currentTarget.value
       .split('')
       .filter(n => n !== ',')
       .join('')
@@ -42,8 +46,9 @@ const Calculator = () => {
     try {
       if (regex.test(raw)) {
         const response = await axios.post(`/save/set/${userID}`, {
-          set: e.target.value
+          set: raw
         })
+        setSaveStatus(true)
         console.log(response)
       } else {
         throw new Error('Make sure your set does not contain duplicates.')
@@ -57,24 +62,39 @@ const Calculator = () => {
     e.preventDefault()
     const { raw, formatted } = input
     console.log('this is the input string', raw)
-    if (raw.length === 0) setSet([])
-    else if (regex.test(raw)) setSet(formatted)
-    else console.error('ouch')
+    if (raw.length === 0) {
+      setSet([])
+      setSaveStatus(false)
+    } else if (regex.test(raw)) {
+      setSet(formatted)
+      setSaveStatus(false)
+    } else console.error('ouch')
   }
 
   return (
     <div>
       <div id="set-data-container">
-        <div className="flex flex-row justify-start">
+        <div className="flex flex-row justify-start items-center">
           <form onSubmit={changeSet}>
             <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={changeText}
               type="text"
               placeholder="type your set here"
             />
           </form>
-          <button value={set} onClick={saveSet} type="button">
-            Save this Set
+          <button
+            id="save-button"
+            value={set}
+            className="bg-white hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow"
+            onClick={saveStatus ? null : saveSet}
+            type="button"
+          >
+            {saveStatus ? (
+              <i className="fas fa-check" />
+            ) : (
+              <i className="far fa-save" />
+            )}
           </button>
         </div>
 
