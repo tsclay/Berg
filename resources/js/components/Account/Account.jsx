@@ -50,79 +50,93 @@ const Account = () => {
     getUser()
   }, [])
 
-  return user.firstName ? (
-    <div className="container mx-auto w-1/2">
-      <form className="w-full" id="update-info" onSubmit={updateUser}>
-        <div className="grid grid-cols-2 grid-rows-1 gap-4">
-          <div>
-            <label className="font-bold text-lg" htmlFor="firstName">
-              First Name
-            </label>
-            <p>{user.firstName}</p>
-            <input
-              className={inputClass}
-              id="firstName"
-              type="text"
-              placeholder="First name"
-              onChange={prepareUpdate}
+  return (
+    <div>
+      <div className="container mx-auto mt-1/5 w-1/2 rounded overflow-hidden shadow-lg">
+        {user.firstName ? (
+          <div className="px-6 py-4" id="form-fields">
+            <div className="font-bold text-2xl mb-4">Your Info</div>
+            <form className="w-full" id="update-info" onSubmit={updateUser}>
+              <div className="grid grid-cols-2 grid-rows-1 gap-4">
+                <div>
+                  <label className="font-bold text-lg" htmlFor="firstName">
+                    First Name
+                  </label>
+                  <p>{user.firstName}</p>
+                  <input
+                    className={inputClass}
+                    id="firstName"
+                    type="text"
+                    placeholder="First name"
+                    onChange={prepareUpdate}
+                  />
+                </div>
+                <div>
+                  {' '}
+                  <label className="font-bold text-lg" htmlFor="lastName">
+                    Last Name
+                  </label>
+                  <p>{user.lastName}</p>
+                  <input
+                    className={inputClass}
+                    id="lastName"
+                    type="text"
+                    placeholder="Last name"
+                    onChange={prepareUpdate}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 grid-rows-1 gap-4">
+                <div>
+                  <label className="font-bold text-lg" htmlFor="firstName">
+                    Email
+                  </label>
+                  <p>{user.email}</p>
+                  <input
+                    className={inputClass}
+                    id="email"
+                    type="text"
+                    placeholder="Email"
+                    onChange={prepareUpdate}
+                  />
+                </div>
+                <div>
+                  {' '}
+                  <p className="font-bold text-lg">
+                    Username{' '}
+                    <span className="text-gray-500 text-xs italic">
+                      unchangeable... for now!
+                    </span>
+                  </p>
+                  <p>{user.username}</p>
+                </div>
+              </div>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48 block mr-0"
+                type="submit"
+              >
+                Make changes
+              </button>
+            </form>
+          </div>
+        ) : (
+          <div className="px-6 py-4 mx-auto w-1/2">
+            <img
+              className="block mx-auto"
+              src="/assets/loading.gif"
+              alt="Fetching data..."
             />
           </div>
-          <div>
-            {' '}
-            <label className="font-bold text-lg" htmlFor="lastName">
-              Last Name
-            </label>
-            <p>{user.lastName}</p>
-            <input
-              className={inputClass}
-              id="lastName"
-              type="text"
-              placeholder="Last name"
-              onChange={prepareUpdate}
-            />
-          </div>
+        )}
+      </div>
+      {/* {user.userData ? (
+        <div>
+          Found sets:
+          {user.userData.map(s => (
+            <div>{s.saved_set}</div>
+          ))}
         </div>
-        <div className="grid grid-cols-2 grid-rows-1 gap-4">
-          <div>
-            <label className="font-bold text-lg" htmlFor="firstName">
-              Email
-            </label>
-            <p>{user.email}</p>
-            <input
-              className={inputClass}
-              id="email"
-              type="text"
-              placeholder="Email"
-              onChange={prepareUpdate}
-            />
-          </div>
-          <div>
-            {' '}
-            <p className="font-bold text-lg">
-              Username{' '}
-              <span className="text-gray-500 text-xs italic">
-                unchangeable... for now!
-              </span>
-            </p>
-            <p>{user.username}</p>
-          </div>
-        </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48 block mx-auto"
-          type="submit"
-        >
-          Make changes
-        </button>
-      </form>
-
-      <div>Found sets:</div>
-      {user.userData.map(s => (
-        <div>{s.saved_set}</div>
-      ))}
-    </div>
-  ) : (
-    <div className="container mx-auto w-1/2">
-      <img src="/assets/loading.gif" alt="Fetching data..." />
+      ) : null} */}
     </div>
   )
 }

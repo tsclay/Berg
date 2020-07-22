@@ -95695,9 +95695,14 @@ var Account = function Account() {
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     getUser();
   }, []);
-  return user.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "container mx-auto w-1/2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "container mx-auto mt-1/5 w-1/2 rounded overflow-hidden shadow-lg"
+  }, user.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "px-6 py-4",
+    id: "form-fields"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "font-bold text-2xl mb-4"
+  }, "Your Info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
     className: "w-full",
     id: "update-info",
     onSubmit: updateUser
@@ -95737,16 +95742,15 @@ var Account = function Account() {
   }, "Username", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "text-gray-500 text-xs italic"
   }, "unchangeable... for now!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, user.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48 block mx-auto",
+    className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48 block mr-0",
     type: "submit"
-  }, "Make changes")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Found sets:"), user.userData.map(function (s) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, s.saved_set);
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "container mx-auto w-1/2"
+  }, "Make changes"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "px-6 py-4 mx-auto w-1/2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    className: "block mx-auto",
     src: "/assets/loading.gif",
     alt: "Fetching data..."
-  }));
+  }))));
 };
 
 if (document.title === 'Account') {
