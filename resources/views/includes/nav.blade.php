@@ -2,7 +2,7 @@
   <img id="logo" src="/assets/logo-berg.png" alt="Berg">
 
   @if (auth()->check())
-  <h4 class="font-bold text-xl text-center">Welcome, {{ auth()->user()->first_name}}</h4>
+  <h4 id="greeter" class="font-bold text-xl text-center">Welcome, {{ auth()->user()->first_name}}</h4>
   @endif
 
   <ul class="flex flex-row justify-even">
