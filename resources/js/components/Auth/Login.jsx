@@ -21,7 +21,7 @@ const Login = (props) => {
   })
 
   return (
-    <div className="container mx-auto mt-1/5 w-1/2 rounded overflow-hidden shadow-lg">
+    <div className="container mx-auto w-1/2 rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4" id="form-fields">
         <div className="font-bold text-xl mb-2 text-center">Login</div>
         <div>

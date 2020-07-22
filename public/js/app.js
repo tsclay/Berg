@@ -95833,7 +95833,7 @@ var Login = function Login(props) {
     document.title = 'Berg | Login';
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container mx-auto mt-1/5 w-1/2 rounded overflow-hidden shadow-lg"
+    className: "container mx-auto w-1/2 rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "px-6 py-4",
     id: "form-fields"
@@ -95947,7 +95947,7 @@ var Register = function Register(props) {
     document.title = 'Berg | Register';
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container mx-auto mt-1/5 w-1/2  rounded overflow-hidden shadow-lg"
+    className: "container mx-auto w-1/2  rounded overflow-hidden shadow-lg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "px-6 py-4 flex flex-col justify-between",
     id: "form-fields"
