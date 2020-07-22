@@ -38,3 +38,5 @@ Route::get('/logout', 'SessionController@destroy')->name('logout');
 Route::get('/account', 'AccountController@index')->name('account');
 
 Route::post('/account', 'AccountController@giveUser')->name('account');
+
+Route::put('/account/update', 'AccountController@updateUser')->name('update');

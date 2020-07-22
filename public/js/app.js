@@ -95581,6 +95581,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable indent */
 
 
 
@@ -95593,6 +95594,16 @@ var Account = function Account() {
       _useState2 = _slicedToArray(_useState, 2),
       user = _useState2[0],
       setUser = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    userID: userID
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      changedUser = _useState4[0],
+      setChangedUser = _useState4[1];
+
+  var inputClass = 'shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline';
+  var inputHasError = 'shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline';
 
   var getUser = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -95609,10 +95620,9 @@ var Account = function Account() {
             case 2:
               response = _context.sent;
               data = response.data;
-              console.log(response);
               setUser(data);
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -95625,12 +95635,118 @@ var Account = function Account() {
     };
   }();
 
+  var prepareUpdate = function prepareUpdate(e) {
+    switch (e.target.id) {
+      case 'firstName':
+        changedUser.firstName = e.target.value;
+        break;
+
+      case 'lastName':
+        changedUser.lastName = e.target.value;
+        break;
+
+      case 'email':
+        changedUser.email = e.target.value;
+        break;
+
+      default:
+    }
+
+    setChangedUser(changedUser);
+  };
+
+  var updateUser = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
+      var response, _response$data, email, firstName, lastName, username;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              e.preventDefault();
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default.a.put('/account/update', changedUser);
+
+            case 3:
+              response = _context2.sent;
+              _response$data = response.data, email = _response$data.email, firstName = _response$data.firstName, lastName = _response$data.lastName, username = _response$data.username;
+              setUser({
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                username: username,
+                userData: user.userData
+              });
+              document.getElementById('greeter').innerHTML = "Welcome, ".concat(firstName);
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function updateUser(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     getUser();
   }, []);
-  return user.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, user.firstName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, user.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Found sets:"), user.userData.map(function (s) {
+  return user.firstName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "container mx-auto w-1/2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    className: "w-full",
+    id: "update-info",
+    onSubmit: updateUser
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "grid grid-cols-2 grid-rows-1 gap-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    className: "font-bold text-lg",
+    htmlFor: "firstName"
+  }, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, user.firstName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: inputClass,
+    id: "firstName",
+    type: "text",
+    placeholder: "First name",
+    onChange: prepareUpdate
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    className: "font-bold text-lg",
+    htmlFor: "lastName"
+  }, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, user.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: inputClass,
+    id: "lastName",
+    type: "text",
+    placeholder: "Last name",
+    onChange: prepareUpdate
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "grid grid-cols-2 grid-rows-1 gap-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    className: "font-bold text-lg",
+    htmlFor: "firstName"
+  }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, user.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: inputClass,
+    id: "email",
+    type: "text",
+    placeholder: "Email",
+    onChange: prepareUpdate
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    className: "font-bold text-lg"
+  }, "Username", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "text-gray-500 text-xs italic"
+  }, "unchangeable... for now!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, user.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48 block mx-auto",
+    type: "submit"
+  }, "Make changes")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "Found sets:"), user.userData.map(function (s) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, s.saved_set);
-  })) : null;
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "container mx-auto w-1/2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: "/assets/loading.gif",
+    alt: "Fetching data..."
+  }));
 };
 
 if (document.title === 'Account') {
