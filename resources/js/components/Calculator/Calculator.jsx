@@ -75,27 +75,29 @@ const Calculator = () => {
     <div>
       <div id="set-data-container">
         <div className="flex flex-row justify-start items-center">
-          <form onSubmit={changeSet}>
+          <form className="mr-4" onSubmit={changeSet}>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={changeText}
               type="text"
-              placeholder="type your set here"
+              placeholder="Type your set here"
             />
           </form>
-          <button
-            id="save-button"
-            value={set}
-            className="bg-white hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow"
-            onClick={saveStatus ? null : saveSet}
-            type="button"
-          >
-            {saveStatus ? (
-              <i className="fas fa-check" />
-            ) : (
-              <i className="far fa-save" />
-            )}
-          </button>
+          <div id="controls">
+            <button
+              id="save-button"
+              value={set}
+              className="bg-white hover:bg-gray-400 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow"
+              onClick={saveStatus ? null : saveSet}
+              type="button"
+            >
+              {saveStatus ? (
+                <i className="fas fa-check" />
+              ) : (
+                <i className="far fa-save" />
+              )}
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-row justify-even">
