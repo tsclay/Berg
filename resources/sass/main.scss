@@ -4,6 +4,12 @@
 
 @import "tailwindcss/utilities";
 
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
 fieldset {
     border: 2px solid black;
 }
@@ -17,6 +23,43 @@ fieldset {
     }
 }
 
-#form-fields {
-    min-height: 498px;
+// #form-fields {
+//     min-height: 498px;
+// }
+
+.mt-1\/5 {
+    margin-top: 20%;
+}
+
+#calculator > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1em;
+}
+
+#logo {
+    width: 100px;
+    height: 100%;
+}
+
+#update-info {
+    > div {
+        margin-bottom: 2em;
+    }
+}
+
+@media (max-width: 1150px) {
+    #calculator {
+        > div {
+            grid-template-columns: 1fr;
+            grid-auto-rows: auto;
+        }
+        #staff-container {
+            grid-area: 1/1/1/1;
+        }
+        #set-data-container {
+            grid-area: 2/1/2/1;
+        }
+    }
 }

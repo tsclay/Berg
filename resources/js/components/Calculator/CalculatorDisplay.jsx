@@ -65,8 +65,9 @@ const CalculatorDisplay = props => {
   ) : (
     <div>
       <h4>
-        Begin typing digits 0-9, t (10), and e (11) to see the details on your
-        set!
+        Type any combination of digits and letters &lsquo;t&rsquo; and
+        &lsquo;e&rsquo; then press Enter. Note, you can only type one of each
+        character. No duplicates!
       </h4>
     </div>
   )

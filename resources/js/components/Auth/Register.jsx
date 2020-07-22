@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 // import axios from 'axios'
 
@@ -13,6 +14,10 @@ const Register = (props) => {
     'email',
     'username',
     'password']
+
+  const inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+
+  const inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
 
   for (let i = 0; i < attributes.length; i++) {
     if (document.getElementById('user-auth').getAttribute(attributes[i])) {
@@ -29,7 +34,7 @@ const Register = (props) => {
   })
 
   return (
-    <div className="container mx-auto my-auto w-1/2  rounded overflow-hidden shadow-lg">
+    <div className="container mx-auto w-1/2  rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4 flex flex-col justify-between" id="form-fields">
         <div className="font-bold text-xl mb-2 text-center">Signup</div>
         <div>
@@ -38,14 +43,17 @@ const Register = (props) => {
             <input type="hidden" name="_token" value={token} />
             <fieldset className="mb-3">
               <legend className="ml-3 mb-3">About You</legend>
-              <div className="ml-3 mb-3 flex flex-row justify-between">
+              <div className="ml-3 mb-3 mr-3 flex flex-row justify-between">
                 
-                <div>
+                <div className="mr-1">
                   {allErrors.map(error => 
-                    error.name === 'firstName' ? <div style={{"color": "red"}}>{error.message}</div>
+                    error.name === 'firstName' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                       : null)}
-                  <label className="block" htmlFor="first-name">First Name</label>
+                  <label className="block mb-2" htmlFor="first-name">First Name</label>
                   <input  
+                    className={(allErrors.length > 0) ? allErrors.map(error => 
+                      error.name === 'password' ? inputHasError 
+                        : inputClass) : inputClass}
                     type="text"
                     id="first-name"
                     name="firstName"
@@ -53,12 +61,15 @@ const Register = (props) => {
                   />
 
                 </div>
-                <div>
+                <div className="ml-1">
                   {allErrors.map(error => 
-                    error.name === 'lastName' ? <div style={{"color": "red"}}>{error.message}</div>
+                    error.name === 'lastName' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                       : null)}
-                  <label className="block" htmlFor="last-name">Last Name</label>
+                  <label className="block mb-2" htmlFor="last-name">Last Name</label>
                   <input  
+                    className={(allErrors.length > 0) ? allErrors.map(error => 
+                      error.name === 'password' ? inputHasError 
+                        : inputClass) : inputClass}
                     type="text"
                     id="last-name"
                     name="lastName"
@@ -70,36 +81,46 @@ const Register = (props) => {
             </fieldset>
             <fieldset className="mb-3">
               <legend className="ml-3 mb-3">Account</legend>
-              <div className="ml-3 mb-3">
+              <div className="ml-3 mb-3 mr-3">
                 {allErrors.map(error => 
-                  error.name === 'username' ? <div style={{"color": "red"}}>{error.message}</div>
+                  error.name === 'username' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                     : null)}
-                <label className="block" htmlFor="username">Username</label>
+                <label className="block mb-2" htmlFor="username">Username</label>
                 <input
+                  className={(allErrors.length > 0) ? allErrors.map(error => 
+                    error.name === 'password' ? inputHasError 
+                      : inputClass) : inputClass}
                   type="username"
                   id="username"
                   name="username"
-                  placeholder="AwesomeDude01"
+                  placeholder="AwesomePerson01"
                 />
               </div>
-              <div className="ml-3 mb-3">
+              <div className="ml-3 mb-3 mr-3">
                 {allErrors.map(error => 
-                  error.name === 'email' ? <div style={{"color": "red"}}>{error.message}</div>
+                  error.name === 'email' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                     : null)}
-                <label className="block" htmlFor="email">Email</label>
+                <label className="block mb-2" htmlFor="email">Email</label>
                 <input
+                  className={(allErrors.length > 0) ? allErrors.map(error => 
+                    error.name === 'password' ? inputHasError 
+                      : inputClass) : inputClass}
                   type="email"
                   id="email"
                   name="email"
                   placeholder="someone@example.com"
                 />
               </div>
-              <div className="ml-3 mb-3">
+              <div className="ml-3 mb-3 mr-3">
                 {allErrors.map(error => 
-                  error.name === 'password' ? <div style={{"color": "red"}}>{error.message}</div>
+                  error.name === 'password' ? <p className="text-red-500 text-xs italic">{error.message}</p>
                     : null)}
-                <label className="block" htmlFor="password">Password</label>
+                <label className="block mb-2" htmlFor="password">Password</label>
                 <input
+                  className={(allErrors.length > 0) ? allErrors.map(error => 
+                    error.name === 'password' ? inputHasError 
+                      : inputClass) : inputClass}
+                
                   type="password"
                   id="password"
                   name="password"
