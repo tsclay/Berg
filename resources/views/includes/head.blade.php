@@ -14,3 +14,4 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
+<script src="https://kit.fontawesome.com/f79440d668.js" crossorigin="anonymous"></script>
