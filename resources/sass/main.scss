@@ -4,6 +4,12 @@
 
 @import "tailwindcss/utilities";
 
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
 fieldset {
     border: 2px solid black;
 }
