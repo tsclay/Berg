@@ -20,6 +20,12 @@ const Account = () => {
     const response = await axios.post(`/account`, { userID })
     const { data } = response
     setUser(data)
+    setChangedUser({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      userID
+    })
   }
 
   const prepareUpdate = e => {

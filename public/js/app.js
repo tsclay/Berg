@@ -77674,8 +77674,14 @@ var Account = function Account() {
               response = _context.sent;
               data = response.data;
               setUser(data);
+              setChangedUser({
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                userID: userID
+              });
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
