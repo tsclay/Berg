@@ -15,6 +15,12 @@ use Illuminate\Http\Request;
 |
 */
 
+// General route sends user to home page, if not auth'd
+// they go to login page
+Route::get('/', function () {
+  return redirect('/home');
+});
+
 // For React Router, both register and login routes go to the same page
 Route::get('/register', 'RegisterController@index')->name('register');
 
