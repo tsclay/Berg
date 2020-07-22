@@ -109,7 +109,7 @@ const Calculator = () => {
         </div>
         <CalculatorDisplay set={set} />
       </div>
-      <MusicStaff set={set} />
+      <MusicStaff set={set} userID={userID} saveStatus={saveStatus} />
     </div>
   )
 }

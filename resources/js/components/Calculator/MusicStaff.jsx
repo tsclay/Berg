@@ -1,11 +1,12 @@
 /* eslint-disable no-loop-func */
 /* eslint-disable indent */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Vex from 'vexflow'
 import { pitchClass } from './logic/js/PitchClassNotation'
 
 const MusicStaff = props => {
-  const { set } = props
+  const { set, userID, saveStatus } = props
+  const [user, setUser] = useState({})
 
   const drawNotes = async (context, stave) => {
     const pitches = pitchClass.translate(set)
@@ -62,6 +63,17 @@ const MusicStaff = props => {
     // Vex.Flow.Formatter.FormatAndDraw(context, stave, notes)
   }
 
+  const getUser = async () => {
+    const response = await axios.post(`/account`, { userID })
+    const { data } = response
+    setUser(data)
+  }
+
+  useEffect(() => {
+    console.log('the saved status is', saveStatus)
+    getUser()
+  }, [saveStatus])
+
   useEffect(() => {
     const div = document.getElementById('music-content')
     const renderer = new Vex.Flow.Renderer(div, Vex.Flow.Renderer.Backends.SVG)
@@ -73,7 +85,7 @@ const MusicStaff = props => {
     const context = renderer.getContext()
 
     // Create a stave at position 10, 40 of width 400 on the canvas.
-    const stave = new Vex.Flow.Stave(25, 40, 550)
+    const stave = new Vex.Flow.Stave(25, 0, 550)
 
     // Add a clef and time signature.
     stave.addClef('treble')
@@ -92,8 +104,23 @@ const MusicStaff = props => {
 
   return (
     <div id="staff-container">
-      <h3>Staff Container</h3>
       <div id="music-content" />
+      {user.userData ? (
+        <div>
+          <div>Your saved Sets</div>
+          {user.userData.map(s => (
+            <div>{s.saved_set}</div>
+          ))}
+        </div>
+      ) : (
+        <div className="px-6 py-4 mx-auto w-1/2">
+          <img
+            className="block mx-auto"
+            src="/assets/loading.gif"
+            alt="Fetching data..."
+          />
+        </div>
+      )}
     </div>
   )
 }
