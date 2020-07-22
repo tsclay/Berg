@@ -35,4 +35,24 @@ class AccountController extends Controller
       "userData" => $user_data
     ], 200);
   }
+
+  public function updateUser(Request $request)
+  {
+    $user_id = $request->userID;
+
+    DB::table('users')->where('id', $user_id)->update([
+      "first_name" => $request->firstName,
+      "last_name" => $request->lastName,
+      "email" => $request->email
+    ]);
+
+    $updatedUser = DB::table('users')->where('id', $user_id)->first();
+
+    return response()->json([
+      "firstName" => $updatedUser->first_name,
+      "lastName" => $updatedUser->last_name,
+      "email" => $updatedUser->email,
+      "username" => $updatedUser->username,
+    ], 200);
+  }
 }

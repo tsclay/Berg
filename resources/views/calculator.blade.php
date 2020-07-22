@@ -2,14 +2,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  @include('includes.head')
   <meta name="user-id" content="{{auth()->user()->id}}">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
+
 
   <!-- MIDI.js files -->
   <script src="/js/MIDI.js/build/MIDI.min.js"></script>

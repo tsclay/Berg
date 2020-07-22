@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 // import axios from 'axios'
 
@@ -7,6 +7,10 @@ const Login = (props) => {
   const { token } = props
 
   let loginError = ''
+
+  const inputClass = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+
+  const inputHasError = "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
   
   if (document.getElementById('user-auth').getAttribute('login')) {
     loginError = document.getElementById('user-auth').getAttribute('login')
@@ -17,37 +21,39 @@ const Login = (props) => {
   })
 
   return (
-    <div className="container mx-auto my-auto w-1/2 rounded overflow-hidden shadow-lg">
-      <div className="px-6 py-4 flex flex-col justify-between" id="form-fields">
+    <div className="container mx-auto w-1/2 rounded overflow-hidden shadow-lg">
+      <div className="px-6 py-4" id="form-fields">
         <div className="font-bold text-xl mb-2 text-center">Login</div>
         <div>
           {loginError ? (
-            <div>
-              <h3 style={{"color": "red"}}>{loginError}</h3>
-            </div>
+            <p className="text-red-500 text-xs italic">
+              {loginError}
+            </p>
           ) : null}
           <form className="mx-auto" method="POST" action="/login">
             <input type="hidden" name="_token" value={token} />
             <fieldset className="mb-3">
               <legend className="ml-3 mb-3">Account</legend>
-              <div className="ml-3 mb-3">
-                <label className="block" htmlFor="email">Email</label>
+              <div className="ml-3 mb-3 mr-3">
+                <label className="block mb-2" htmlFor="email">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"    
                   placeholder="someone@example.com"
-                  style={loginError ? {"border": "2px solid red"} : null}
+                  className={loginError ? inputHasError
+                    : inputClass}
                 />
               </div>
-              <div className="ml-3 mb-3">
-                <label className="block" htmlFor="password">Password</label>
+              <div className="ml-3 mb-3 mr-3">
+                <label className="block mb-2" htmlFor="password">Password</label>
                 <input
                   type="password"
                   id="password"
                   name="password"
                   placeholder="Pick a good one!"
-                  style={loginError ? {"border": "2px solid red"} : null}
+                  className={loginError ? inputHasError
+                    : inputClass}
                 />
               </div>
             </fieldset>
