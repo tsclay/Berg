@@ -22,5 +22,7 @@ As it stands, Berg is a proof of concept, a proof that this can be done. I want 
 
 - React
 - PHP Laravel
+- Tailwind CSS
+- ESLint for JavaScript/JSX linting
 - [VexFlow Music Notation Rendering library](https://www.vexflow.com/)
 - [MIDI.js for MIDI playback](https://github.com/mudcube/MIDI.js/)
