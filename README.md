@@ -8,6 +8,7 @@ The app is deployed on Heroku at https://berg-musicapp.herokuapp.com.
 - React
 - React Router
 - PHP Laravel
+- PostgreSQL
 - Tailwind CSS
 - ESLint for JavaScript/JSX linting
 - [VexFlow Music Notation Rendering library](https://www.vexflow.com/)
