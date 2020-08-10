@@ -2,6 +2,17 @@
 
 The app is deployed on Heroku at https://berg-musicapp.herokuapp.com.
 
+
+## Tech used
+
+- React
+- React Router
+- PHP Laravel
+- Tailwind CSS
+- ESLint for JavaScript/JSX linting
+- [VexFlow Music Notation Rendering library](https://www.vexflow.com/)
+- [MIDI.js for MIDI playback](https://github.com/mudcube/MIDI.js/)
+
 ## The Namesake
 
 "Berg" is the German word for "mountain", and it is also a common name in Germany. It so happens to be the name of Alban Berg and part name of Arnold Schöenberg, two of the most influential music composers of the 20th century. Fun fact: The former was student of the the latter.
@@ -18,11 +29,3 @@ Btw, if you want to learn the bare basics of atonal music theory, check it out [
 
 As it stands, Berg is a proof of concept, a proof that this can be done. I want Berg to one day be a hub of apps that includes the calculator, and these apps would help music students studying for a test and musicians interested in using helper tools to help their creative process. 
 
-## Tech used
-
-- React
-- PHP Laravel
-- Tailwind CSS
-- ESLint for JavaScript/JSX linting
-- [VexFlow Music Notation Rendering library](https://www.vexflow.com/)
-- [MIDI.js for MIDI playback](https://github.com/mudcube/MIDI.js/)
