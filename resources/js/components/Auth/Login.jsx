@@ -16,6 +16,12 @@ const Login = (props) => {
     loginError = document.getElementById('user-auth').getAttribute('login')
   }
 
+  const triggerDemoMode = () => {
+    document.getElementById('email').setAttribute('value', 'demo@me.com')
+    document.getElementById('password').setAttribute('value', 'password123')
+    document.getElementById('login-button').click()
+  }
+
   useEffect(() => {
     document.title = 'Berg | Login'
   })
@@ -51,14 +57,15 @@ const Login = (props) => {
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Pick a good one!"
+                  placeholder="Your password"
                   className={loginError ? inputHasError
                     : inputClass}
                 />
               </div>
             </fieldset>
             <div className="flex flex-row justify-between">
-              <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Enter!</button>
+              <button type="submit" id="login-button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Enter!</button>
+              <button type="button" id="demo-mode" onClick={triggerDemoMode} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Demo Mode</button>
               <button className="self-center inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" type="button">
                 <Link to="/register">Need an account?</Link>
               </button>
