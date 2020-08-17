@@ -40,10 +40,12 @@ class AccountController extends Controller
   {
     $user_id = $request->userID;
 
+    $found_user = DB::table('users')->where('id', $user_id)->first();
+
     DB::table('users')->where('id', $user_id)->update([
-      "first_name" => $request->firstName,
-      "last_name" => $request->lastName,
-      "email" => $request->email
+      "first_name" => empty($request->firstName) ? $found_user->first_name : $request->firstName,
+      "last_name" => empty($request->lastName) ? $found_user->last_name : $request->lastName,
+      "email" => empty($request->email) ? $found_user->email : $request->email
     ]);
 
     $updatedUser = DB::table('users')->where('id', $user_id)->first();

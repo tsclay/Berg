@@ -29,6 +29,7 @@ const Account = () => {
   }
 
   const prepareUpdate = e => {
+    console.log('this is the updated ', e.target.id)
     switch (e.target.id) {
       case 'firstName':
         changedUser.firstName = e.target.value
@@ -41,12 +42,18 @@ const Account = () => {
         break
       default:
     }
+    console.log('this is the new state ', changedUser)
     setChangedUser(changedUser)
   }
 
   const updateUser = async e => {
     e.preventDefault()
+    for (let detail in changedUser) {
+      detail.replace(/(\s{1,})/gi, '')
+      if (detail === '') detail = user[detail]
+    }
     const response = await axios.put('/account/update', changedUser)
+    console.log('after update ', response.data)
     const { email, firstName, lastName, username } = response.data
     setUser({ email, firstName, lastName, username, userData: user.userData })
     document.getElementById('greeter').innerHTML = `Welcome, ${firstName}`
