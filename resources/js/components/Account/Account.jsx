@@ -48,6 +48,7 @@ const Account = () => {
 
   const updateUser = async e => {
     e.preventDefault()
+    if (user.username === 'john_doe') return
     for (let detail in changedUser) {
       detail.replace(/(\s{1,})/gi, '')
       if (detail === '') detail = user[detail]
@@ -77,6 +78,7 @@ const Account = () => {
                   </label>
                   <p>{user.firstName}</p>
                   <input
+                    disabled={user.username === 'john_doe'}
                     className={inputClass}
                     id="firstName"
                     type="text"
@@ -91,6 +93,7 @@ const Account = () => {
                   </label>
                   <p>{user.lastName}</p>
                   <input
+                    disabled={user.username === 'john_doe'}
                     className={inputClass}
                     id="lastName"
                     type="text"
@@ -106,6 +109,7 @@ const Account = () => {
                   </label>
                   <p>{user.email}</p>
                   <input
+                    disabled={user.username === 'john_doe'}
                     className={inputClass}
                     id="email"
                     type="text"
@@ -125,12 +129,18 @@ const Account = () => {
                 </div>
               </div>
               <button
+                disabled={user.username === 'john_doe'}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-48 block mr-0"
                 type="submit"
               >
                 Make changes
               </button>
             </form>
+            {user.username === 'john_doe' ? (
+              <p className="text-gray-500 italic mt-1">
+                Editing not available for this account.
+              </p>
+            ) : null}
           </div>
         ) : (
           <div className="px-6 py-4 mx-auto w-1/2">
