@@ -104,10 +104,15 @@ const MusicStaff = props => {
 
   return (
     <div id="staff-container">
+      <div>Click the note heads after calculation to hear them!</div>
       <div id="music-content" />
       {user.userData ? (
         <div>
-          <div>Your saved Sets</div>
+          <div>
+            {user.userData.length === 0
+              ? 'Save a set to see it listed below'
+              : 'Saved Sets'}
+          </div>
           {user.userData.map(s => (
             <div>{s.saved_set}</div>
           ))}
